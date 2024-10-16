@@ -28,3 +28,6 @@
   padding: 10px;
   /* margin-left: 320px; */
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
