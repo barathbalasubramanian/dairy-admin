@@ -1,0 +1,83 @@
+.ticket-center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.call-center {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 40px;
+  height: 48px;
+  padding: 10px;
+  gap: 10px;
+}
+
+.call-center-label {
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.toggle-switch {
+  width: 40px;
+  height: 20px;
+  border-radius: 20px;
+  border: 3px solid #1c1b1f;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-dot {
+  margin-left: 2px;
+  width: 14px;
+  height: 14px;
+  background-color: #1c1b1f;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.toggle-switch.toggled .toggle-dot {
+  transform: translateX(22px);
+}
+
+.ticket-center-content {
+  background-color: #dcecf9;
+  max-width: 95%;
+  height: fit-content;
+  border-radius: 16px;
+  margin-left: 30px;
+  margin-top: 10px;
+  padding-bottom: 50px;
+}
+
+.view-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.view-all-button {
+  background-color: #06ad9d;
+  color: white;
+  border: none;
+  width: 281px;
+  height: 63px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-all-button .arrow {
+  margin-left: 10px;
+  font-size: 100%;
+}

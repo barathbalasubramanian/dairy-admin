@@ -1,0 +1,249 @@
+.User-Management {
+  width: 100%;
+}
+
+.user-add-button {
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 50px;
+}
+
+.user-add-button span {
+  padding-right: 10px;
+  font-size: 25px;
+}
+
+.user-add-button button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  width: 250px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #06ad9d;
+  border-radius: 6px;
+  border: none;
+  transition: all 0.3s ease;
+}
+.user-add-button button:hover {
+  background-color: #049384;
+}
+
+.user-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 68px 68px 20px 68px;
+}
+
+.user-card {
+  width: 370px;
+  background: white;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+}
+
+.user-info {
+  padding: 10px 20px 0px 20px;
+}
+
+.user-contents {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 16px;
+  line-height: 15px;
+}
+
+.user-text {
+  width: 70px;
+  display: flex;
+}
+
+.user-values {
+  width: 150px;
+  display: flex;
+  align-items: center;
+}
+
+.user-values img {
+  padding-left: 10px;
+}
+
+.colon {
+  padding-right: 15px;
+}
+
+.view-more-button {
+  width: 100%;
+  height: 50px;
+  background-color: #06ad9d;
+  color: white;
+  border: none;
+  border-radius: 0 0 16px 16px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.view-more-button:hover {
+  background-color: #049384;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: white;
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  max-height: 450px;
+  max-width: 800px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: slideInUp 0.5s ease-out forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.popup-pad {
+  padding: 80px 100px 20px 100px;
+}
+
+.popup-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+.popup-info1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.popup-info label {
+  display: inline-block;
+  width: 100px;
+  font-weight: 600;
+}
+.popup-info1 label {
+  display: inline-block;
+  width: 100px;
+  font-weight: 600;
+}
+.popup-type {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.popup-info img {
+  padding-left: 50px;
+}
+.popup-info1 img {
+  padding-left: 50px;
+}
+
+.popup-info span {
+  font-weight: 600;
+  width: 30px;
+}
+.popup-info1 span {
+  font-weight: 600;
+  width: 30px;
+}
+
+.popup-info input {
+  width: calc(100% - 110px);
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: not-allowed;
+}
+.popup-info1 input {
+  width: calc(100% - 110px);
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.popup-info input:focus {
+  outline: none;
+  box-shadow: none;
+}
+.popup-info1 input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.popup-buttons {
+  display: flex;
+}
+
+.user-forget-password-button {
+  height: 70px;
+  width: 50%;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 0 0 0 30px;
+  background-color: #06ad9d;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.user-save-button {
+  width: 50%;
+  height: 70px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 0 0 30px 0;
+  background-color: #ccc;
+  color: white;
+  border: none;
+}

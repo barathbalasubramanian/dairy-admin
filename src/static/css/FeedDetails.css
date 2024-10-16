@@ -1,0 +1,128 @@
+.farmer-list {
+  padding: 20px 5px;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.period-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: 100px  ;
+}
+
+.period-button {
+  background-color: transparent;
+  border: 2px solid #4695b8;
+  width: 227px;
+  height: 50px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.period-button.active {
+  background-color: #4695b8;
+  color: white;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: flex-start;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  padding: 20px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-content {
+  gap: 10px;
+  padding: 10px;
+}
+
+.card-content p {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.label {
+  font-weight: 600;
+  width: 110px;
+  text-align: left;
+  margin-right: 1px;
+}
+.colon {
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.feed-view-more-button {
+  background-color: #fff;
+  border: 1px solid;
+  border-radius: 4px;
+  width: 122px;
+  height: 31px;
+  padding: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+}
+
+.feed-view-more-button img{
+  padding-left: 8px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.pagination button {
+  background-color: transparent;
+  border: 1px solid #dcecf9;
+  width: 48px;
+  height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #4695b8;
+}
+
+.pagination button.active,
+.pagination button:hover {
+  background-color: #dcecf9;
+  color: #4695b8;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+}

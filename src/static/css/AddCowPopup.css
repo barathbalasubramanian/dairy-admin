@@ -1,0 +1,91 @@
+.add-cow-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.add-cow-popup-content {
+  background: white;
+  padding: 60px;
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  max-height: 250px;
+  max-width: 500px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: slideInUp 0.5s ease-out forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.add-cow-popup-contents {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.add-cow-popup-contents label {
+  width: 60px;
+  font-weight: 700;
+}
+
+.add-cow-popup-contents span {
+  font-weight: 700;
+  margin: 0 5px;
+}
+
+.add-cow-popup-contents input {
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.add-cow-popup-contents input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.add-cow-popup-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.add-cow-popup-button-container button {
+  background-color: #06ad9d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+}
+
+.add-cow-popup-button-container button:hover {
+  background-color: #047468;
+}

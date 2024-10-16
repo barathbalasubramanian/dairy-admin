@@ -1,0 +1,49 @@
+.main-content {
+  background-color: #dcecf9;
+  max-width: 100%;
+  height: fit-content;
+  border-radius: 16px;
+  margin-top: 80px;
+  padding-bottom: 70px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.view-order-button {
+  background-color: #06ad9d;
+  color: white;
+  border: none;
+  width: 281px;
+  height: 63px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-order-button .arrow {
+  margin-left: 10px;
+  font-size: 100%;
+}
+
+.export-button {
+  background-color: transparent;
+  color: #000000;
+  border: 3px solid #06ad9d;
+  width: 281px;
+  height: 63px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 24px;
+  font-weight: 500;
+  cursor: pointer;
+}

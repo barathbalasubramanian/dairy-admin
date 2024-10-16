@@ -1,0 +1,103 @@
+.confirmation-Popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.confirmation-popup-content {
+  width: 700px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+  border-radius: 10px;
+  animation: slideInDown 0.5s ease-out forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.confirmation-popup-text {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.complete p{
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+.sub-p {
+  margin: 0%;
+  font-size: 20px;
+  font-weight: 400;
+  color: #383838;
+}
+
+.confirmation-popup-text img {
+  width: 15%;
+}
+
+.confirmation-buttons {
+  width: 100%;
+  display: flex;
+}
+
+.cancel-button {
+  background-color: #d9d9d9;
+  color: #747474;
+  width: 50%;
+  height: 70px;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 0 0 0 5px;
+  cursor: pointer;
+}
+
+.confirm-button {
+  background-color: #009688;
+  color: #fff;
+  width: 50%;
+  height: 70px;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 0 0 5px 0;
+  cursor: pointer;
+}
+
+.confirmation-popup-text .connect {
+  color: #3ab1dc;
+}
+
+.confirmation-popup-text .cancel {
+  color: #ff0000;
+}
+
+.confirmation-popup-text .complete {
+  color: #2a860c;
+}

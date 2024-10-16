@@ -1,0 +1,123 @@
+.user-confirmation-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+
+.user-confirmation-popup-content {
+  background: white;
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  max-height: 250px;
+  max-width: 700px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: slideInUp 0.5s ease-out forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.user-confirmation-popup-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  gap: 10px;
+}
+
+.user-confirmation-popup h2 {
+  font-weight: 600;
+}
+
+.user-confirmation-popup label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.user-confirmation-popup input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 2px solid #000;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+
+.user-confirmation-popup input[type="checkbox"]:checked::before {
+  content: "✔";
+  color: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+}
+
+.user-confirmation-buttons {
+  display: flex;
+}
+
+.user-confirmation-buttons button {
+  width: 50%;
+  height: 60px;
+  border: none;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.user-cancel-button {
+  border-radius: 0 0 0 24px;
+}
+
+.user-cancel-button.unchecked {
+  background-color: #06ad9d;
+  color: white;
+}
+
+.user-cancel-button.checked {
+  background-color: #ddd;
+  color: #666;
+}
+
+.user-create-button {
+  border-radius: 0 0 24px 0;
+}
+
+.user-create-button.disabled {
+  background-color: #ddd;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.user-create-button.enabled {
+  background-color: #06ad9d;
+  color: white;
+}

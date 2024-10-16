@@ -1,0 +1,285 @@
+.farmer-add-button {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 40px;
+}
+
+.farmer-add-button button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  background-color: #4695b8;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.farmer-add-button img {
+  padding-left: 6px;
+}
+
+.farmer-add-dropdown-menu {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.farmer-add-dropdown-menu button {
+  background: none;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0px;
+  width: auto;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}
+
+.farmer-add-dropdown-menu button:hover {
+  background-color: #f0f0f0;
+}
+
+.farmer-card-container {
+  margin: 40px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px 40px 40px 30px ;
+}
+
+.farmer-card-container-1 {
+  margin: 40px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px 40px 40px 50px ;
+}
+
+.farmer-card {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+  width: 270px;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.farmer-card-1 {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.farmer-card-header {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.farmer-card-id {
+  color: #333;
+}
+
+.farmer-card-name {
+  font-size: 20px;
+}
+
+.farmer-card-subhead {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  gap: 10px;
+  position: relative;
+}
+
+.farmer-card-subhead-detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 2px solid #000;
+  color: #333;
+  font-weight: 500;
+  height: 40px;
+  width: 100%;
+  border-radius: 8px;
+  position: relative;
+}
+
+.farmer-card-subhead-detail-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 2px solid #000;
+  color: #333;
+  font-weight: 500;
+  height: 40px;
+  width: 100%;
+  border-radius: 8px;
+  position: relative;
+}
+
+.farmer-card-subhead-detail span {
+  position: absolute;
+  top: -11px;
+  left: 10px;
+  background-color: #fff;
+  padding: 0 5px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+}
+
+.farmer-card-subhead-detail-1 span {
+  position: absolute;
+  top: -11px;
+  background-color: #ffffff;
+  border-radius: 100%;
+  padding: 0 5px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+}
+
+.farmer-card-detail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.farmer-card-detail img {
+  width: 20px;
+  padding-right: 10px;
+}
+
+.farmer-card-add-detail {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  color: #666;
+}
+
+.farmer-card-add-detail p {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  padding-right: 10px;
+  font-weight: 700;
+  color: #000;
+}
+
+.farmer-card-add-detail span {
+  padding-right: 10px;
+  color: #000;
+  font-weight: 700;
+}
+
+.farmer-card-detail span {
+  padding-right: 10px;
+  font-weight: 700;
+  color: #333;
+}
+
+.farmer-card-comment {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 5px;
+  background-color: #fff;
+  margin-top: 10px;
+}
+
+.farmer-card-comment span:first-child {
+  position: absolute;
+  top: -11px;
+  left: 16px;
+  background-color: #fff;
+  padding: 0 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.farmer-card-comment .textarea {
+  margin: 0;
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  color: #666;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  resize: none;
+  cursor: not-allowed;
+  font-size: 14px;
+  position: relative;
+}
+
+.farmer-card-footer {
+  width: 100%;
+}
+
+.connect-button {
+  background-color: #06ad9d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  height: 42px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.connect-button img {
+  padding-left: 10px;
+}
+
+.connect-button:hover {
+  background-color: #05998a;
+}

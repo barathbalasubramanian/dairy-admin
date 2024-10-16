@@ -1,0 +1,36 @@
+.feeds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 68px;
+    z-index: 2;
+  }
+  
+  .feed-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    background-color:#FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .feed-title {
+    padding:0 40px;
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 10px;
+  }
+  
+  .feed-value {
+    font-size: 24px;
+    color: #000000;
+    font-weight: 600;
+  }
+  

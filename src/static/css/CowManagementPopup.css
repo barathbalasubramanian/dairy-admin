@@ -1,0 +1,70 @@
+.cow-management-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.cow-management-popup-content {
+  background: white;
+  padding: 60px;
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+  min-height: 200px;
+  max-width: 700px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: slideInUp 0.5s ease-out forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.formerdetail-cow table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.formerdetail-cow th,
+.formerdetail-cow td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.formerdetail-cow th {
+  background-color: #f4f4f4;
+}
+
+.formerdetail-cow tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.formerdetail-cow button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.formerdetail-cow button:hover {
+  background: #0056b3;
+}

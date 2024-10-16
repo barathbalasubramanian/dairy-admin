@@ -1,0 +1,116 @@
+.bulk-import-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.bulk-import-popup-content {
+  background: white;
+  border-radius: 30px;
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: slideInUp 0.5s ease-out forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.bulk-import-popup-contents {
+  padding: 40px 20px 0px 20px;
+  text-align: center;
+}
+
+.sample-template {
+  margin-top: 10px;
+}
+
+.sample-template p {
+  margin: 0%;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.bulk-import-popup-content h2 {
+  margin: 0%;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.file-upload-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.file-upload-label {
+  display: block;
+  width: 100%;
+  padding: 50px 0;
+  border: 2px dashed #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #f9f9f9;
+  color: #999;
+  font-size: 16px;
+  text-align: center;
+}
+
+#file-upload {
+  display: none;
+}
+
+.file-upload-container span {
+  font-weight: 600;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cancel-button,
+.continue-button {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 50%;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button {
+  border-radius: 0 0 0 30px;
+}
+
+.continue-button {
+  border-radius: 0 0 30px 0;
+}
+
+.continue-button {
+  background-color: #06ad9d;
+  color: white;
+  border: none;
+}

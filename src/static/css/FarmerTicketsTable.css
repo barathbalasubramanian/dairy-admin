@@ -1,0 +1,45 @@
+.farmer-tickets-table-container {
+  overflow-x: auto;
+}
+
+.farmer-tickets-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.farmer-tickets-table thead {
+  background-color: #4695b8;
+}
+
+.farmer-tickets-table th,
+.farmer-tickets-table td {
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 14px;
+  padding: 20px;
+}
+
+.farmer-tickets-table th {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.farmer-tickets-table th:first-child {
+  border-radius: 16px 0 0 0;
+  border: none;
+}
+
+.farmer-tickets-table th:last-child {
+  border-radius: 0 16px 0 0;
+  border: none;
+}
+
+.farmer-tickets-table tbody tr:hover{
+  background-color: #4696b85b;
+  font-weight: 600;
+}
+
+.farmer-tickets-table tbody td:last-child{
+  cursor: pointer;
+}
