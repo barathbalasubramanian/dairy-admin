@@ -186,3 +186,25 @@ ul.dropdown-menu  {
     width: 200px;
   }
 }
+.dropdown-container {
+  display: flex;
+  flex-direction: column;
+
+
+  margin-top: 5px;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+  padding: 10px 20px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-toggle p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}

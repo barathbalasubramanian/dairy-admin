@@ -15,43 +15,76 @@ import "../static/css/nav.css";
 const Nav = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedData, setSelectedData] = useState("");
-  const dropdownRef = useRef(null);
+  const [dataManagementOpen, setDataManagementOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [areaDropdownOpen, setAreaDropdownOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState("");
+  const [selectedArea, setSelectedArea] = useState("");
+  const dataManagementRef = useRef(null);
+  const userDropdownRef = useRef(null);
+  const areaDropdownRef = useRef(null);
 
-  const dropdownPaths = {
+  const userDropdownPaths = {
     Farmer: "/FarmerPage",
-    VLCC: "/VLCCPage",
-    BMC: "/BMCPage",
-    Cluster: "/ClusterPage",
     "Call Centre Executive": "/CallCentreExecutivePage",
     "Service Provider": "/ServiceProviderPage",
   };
 
+  const areaDropdownPaths = {
+    VLCC: "/VLCCPage",
+    BMC: "/BMCPage",
+    Cluster: "/ClusterPage",
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
+      if (dataManagementRef.current && !dataManagementRef.current.contains(event.target)) {
+        setDataManagementOpen(false);
+        setUserDropdownOpen(false);
+        setAreaDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleDropdownToggle = () => {
-    setDropdownOpen(!dropdownOpen);
+  const handleDataManagementToggle = () => {
+    setDataManagementOpen(!dataManagementOpen);
+    setUserDropdownOpen(false);
+    setAreaDropdownOpen(false);
   };
 
-  const handleDropdownItemClick = (text) => {
-    setSelectedData(text);
-    navigate(dropdownPaths[text]);
-    setDropdownOpen(false);
+  const handleUserDropdownToggle = () => {
+    setUserDropdownOpen(!userDropdownOpen);
+    setAreaDropdownOpen(false);
+  };
+
+  const handleAreaDropdownToggle = () => {
+    setAreaDropdownOpen(!areaDropdownOpen);
+    setUserDropdownOpen(false);
+  };
+
+  const handleUserDropdownItemClick = (text) => {
+    setSelectedUser(text);
+    navigate(userDropdownPaths[text]);
+    setDataManagementOpen(false);
+    setUserDropdownOpen(false);
+  };
+
+  const handleAreaDropdownItemClick = (text) => {
+    setSelectedArea(text);
+    navigate(areaDropdownPaths[text]);
+    setDataManagementOpen(false);
+    setAreaDropdownOpen(false);
   };
 
   const isActive = (path) => location.pathname === path;
 
   const isDataManagementActive = () => {
-    return dropdownPaths[selectedData] && isActive(dropdownPaths[selectedData]);
+    return (
+      (userDropdownPaths[selectedUser] && isActive(userDropdownPaths[selectedUser])) ||
+      (areaDropdownPaths[selectedArea] && isActive(areaDropdownPaths[selectedArea]))
+    );
   };
 
   return (
@@ -82,36 +115,61 @@ const Nav = () => {
           </div>
           <div className="nav-body">
             <ul>
-              <li>
+              <li ref={dataManagementRef}>
                 <div
                   className={
                     isActive("/") || isDataManagementActive()
                       ? "nav-ite active"
                       : "nav-ite"
                   }
-                  onClick={handleDropdownToggle}
+                  onClick={handleDataManagementToggle}
                 >
                   <img alt="Data Management" src={datamanagement} />
-                  <p>
-                    {selectedData || "Data Management"}{" "}
-                    <img className="arrow" alt="Arrow" src={arrow} />
-                  </p>
+                  <p>Data Management </p>
                 </div>
-                {dropdownOpen && (
-                  <ul className="dropdown-menu" ref={dropdownRef}>
-                    {Object.keys(dropdownPaths).map((text) => (
-                      <li key={text}>
-                        <button
-                          className={
-                            selectedData === text ? "active-dropdown-item" : ""
-                          }
-                          onClick={() => handleDropdownItemClick(text)}
-                        >
-                          {text}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
+                {dataManagementOpen && (
+                  <div className="dropdown-container">
+                    <div onClick={handleUserDropdownToggle} className="dropdown-toggle">
+                      <p>
+                        {selectedUser || "User Type"}{" "}
+                        <img className="arrow" alt="Arrow" src={arrow} />
+                      </p>
+                    </div>
+                    {userDropdownOpen && (
+                      <ul className="dropdown-menu" ref={userDropdownRef}>
+                        {Object.keys(userDropdownPaths).map((text) => (
+                          <li key={text}>
+                            <button
+                              className={selectedUser === text ? "active-dropdown-item" : ""}
+                              onClick={() => handleUserDropdownItemClick(text)}
+                            >
+                              {text}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <div onClick={handleAreaDropdownToggle} className="dropdown-toggle">
+                      <p>
+                        {selectedArea || "Area Type"}{" "}
+                        <img className="arrow" alt="Arrow" src={arrow} />
+                      </p>
+                    </div>
+                    {areaDropdownOpen && (
+                      <ul className="dropdown-menu" ref={areaDropdownRef}>
+                        {Object.keys(areaDropdownPaths).map((text) => (
+                          <li key={text}>
+                            <button
+                              className={selectedArea === text ? "active-dropdown-item" : ""}
+                              onClick={() => handleAreaDropdownItemClick(text)}
+                            >
+                              {text}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 )}
               </li>
               <li>
