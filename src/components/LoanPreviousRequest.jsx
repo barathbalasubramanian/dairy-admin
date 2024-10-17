@@ -4,34 +4,23 @@ import "../static/css/FinancePreviousRequest.css";
 import { useGlobalContext } from "../Context";
 
 const LoanPreviousRequest = () => {
-  const { preloan,connect } = useGlobalContext();
+  const { preloan, connect } = useGlobalContext();
   const [activeTab, setActiveTab] = useState("Processed");
-  const [currentPage, setCurrentPage] = useState(1);
   const [isConnectPopupOpen, setIsConnectPopupOpen] = useState(false);
   const [selectedFarmer, setSelectedFarmer] = useState(null);
-  const itemsPerPage = 3;
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
-    setCurrentPage(1);
   };
 
   const getCurrentPageData = () => {
     if (preloan === undefined) {
       return [];
     }
-    const filteredData = preloan.filter((item) => item.status === activeTab);
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return filteredData.slice(startIndex, endIndex);
+    return preloan.filter((item) => item.status === activeTab);
   };
 
   const currentData = getCurrentPageData();
-
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
 
   const handleConnectClick = (farmer) => {
     setSelectedFarmer(farmer);
@@ -40,7 +29,7 @@ const LoanPreviousRequest = () => {
 
   const handleConnectConfirm = async () => {
     await connect(selectedFarmer.Ticket_id);
-    console.log(`Confirmed connection for ${selectedFarmer.farmerName}`);
+    console.log(`Confirmed connection for ${selectedFarmer.Farmer_Name}`);
     setIsConnectPopupOpen(false);
   };
 
@@ -62,9 +51,7 @@ const LoanPreviousRequest = () => {
           </div>
           <div className="finance-data-div">
             <p className="finance-data-name"> Address</p> <span>:</span>
-            <p className="finance-data-value">
-              {item.Address}
-            </p>
+            <p className="finance-data-value">{item.Address}</p>
           </div>
           <div className="finance-data-div">
             <p className="finance-data-name"> Cow's Count</p> <span>:</span>{" "}
@@ -72,11 +59,13 @@ const LoanPreviousRequest = () => {
           </div>
           <div className="finance-data-div">
             <p className="finance-data-name"> VLCC </p>
-            <span>:</span> <p className="finance-data-value">{item.VLCC_Name}</p>
+            <span>:</span>{" "}
+            <p className="finance-data-value">{item.VLCC_Name}</p>
           </div>
           <div className="finance-data-div">
             <p className="finance-data-name"> Cluster</p>
-            <span>:</span> <p className="finance-data-value">{item.Cluster_Name}</p>
+            <span>:</span>{" "}
+            <p className="finance-data-value">{item.Cluster_Name}</p>
           </div>
         </div>
         <div className="finance-data-info">
@@ -84,18 +73,12 @@ const LoanPreviousRequest = () => {
           <textarea readOnly value={item.Comments}></textarea>
         </div>
         <div className="finance-data-actions">
-          {activeTab === "Processed" ? (
-            <button
-              className="finance-completed-button"
-              onClick={() => handleConnectClick(item)}
-            >
-              Connect
-            </button>
-          ) : (
-            <div className="finance-cancelled">
-              Cancelled <span className="cancel-icon">✖</span>
-            </div>
-          )}
+          <button
+            className="finance-connect-button"
+            onClick={() => handleConnectClick(item)}
+          >
+            Connect
+          </button>
         </div>
       </div>
     ));
@@ -103,9 +86,9 @@ const LoanPreviousRequest = () => {
 
   return (
     <div className="finance-previous-request">
-      <div className="finance-previous-tab-container">
+      <div className="finance-tab-container">
         <div
-          className={`finance-previous-tab ${
+          className={`finance-tab ${
             activeTab === "Processed" ? "tabactive" : ""
           }`}
           onClick={() => handleTabClick("Processed")}
@@ -113,7 +96,7 @@ const LoanPreviousRequest = () => {
           Processed
         </div>
         <div
-          className={`finance-previous-tab ${
+          className={`finance-tab ${
             activeTab === "Cancelled" ? "tabactive" : ""
           }`}
           onClick={() => handleTabClick("Cancelled")}
@@ -121,8 +104,7 @@ const LoanPreviousRequest = () => {
           Cancelled
         </div>
       </div>
-      <div className="finance-previous-data-container">{renderData()}</div>
- 
+      <div className="finance-data-container">{renderData()}</div>
       <FinanceConnectPopup
         isOpen={isConnectPopupOpen}
         onClose={handleConnectClosePopup}

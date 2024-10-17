@@ -7,9 +7,11 @@ import IndividualEditPopup from "../components/EditVlccPopup.jsx";
 import edit_img from "../static/img/edit-img.svg";
 import "../static/css/FarmerPage.css";
 import { useGlobalContext } from "../Context";
+import useAuth from "./UseAuth.jsx";
 
 const VLCCPage = () => {
-  const { Vlcc,addvlcc,editVlcc } = useGlobalContext();
+  const { Vlcc = [], addvlcc, editVlcc } = useGlobalContext();
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
 
   const [farmers, setFarmers] = useState([
     {
@@ -91,7 +93,13 @@ const VLCCPage = () => {
   };
 
   const handleAddNewFarmer = (newFarmer) => {
-    addvlcc(newFarmer.vlcc,newFarmer.name,newFarmer.email,newFarmer.phone,newFarmer.vlcc);
+    addvlcc(
+      newFarmer.vlcc,
+      newFarmer.name,
+      newFarmer.email,
+      newFarmer.phone,
+      newFarmer.vlcc
+    );
     setFarmers((prevFarmers) => [...prevFarmers, newFarmer]);
     setIsIndividualDetailsPopupOpen(false);
   };
@@ -102,7 +110,13 @@ const VLCCPage = () => {
   };
 
   const handleUpdateFarmer = (updatedFarmer) => {
-    editVlcc(updatedFarmer.id,updatedFarmer.vlcc,updatedFarmer.name,updatedFarmer.email,updatedFarmer.phone);
+    editVlcc(
+      updatedFarmer.id,
+      updatedFarmer.vlcc,
+      updatedFarmer.name,
+      updatedFarmer.email,
+      updatedFarmer.phone
+    );
     setFarmers((prevFarmers) =>
       prevFarmers.map((farmer) =>
         farmer.id === updatedFarmer.id ? updatedFarmer : farmer
@@ -151,6 +165,11 @@ const VLCCPage = () => {
       </div>
     </div>
   );
+
+  useAuth(() => setIsAuthChecked(true));
+  if (!isAuthChecked) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="farmer-availability-page">

@@ -73,7 +73,7 @@ const IndividualEditPopup = ({ isOpen, onClose, onSave, farmer }) => {
             <input
               type="text"
               name="Address_line"
-              value={formData.Address.Address_line } 
+              value={formData.Address.Address_line3 } 
               onChange={handleChange}
               required
             />
