@@ -7,9 +7,12 @@ import IndividualEditPopup from "../components/EditCallCenterPopup.jsx";
 import edit_img from "../static/img/edit-img.svg";
 import "../static/css/FarmerPage.css";
 import { useGlobalContext } from "../Context";
+import useAuth from "./UseAuth.jsx";
 
 const VLCCPage = () => {
-  const { staff,addstaff } = useGlobalContext();
+  const { staff = [], addstaff } = useGlobalContext();
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
+
   const [farmers, setFarmers] = useState([
     {
       id: "579HJ73",
@@ -90,7 +93,7 @@ const VLCCPage = () => {
   };
 
   const handleAddNewFarmer = (newFarmer) => {
-    addstaff(newFarmer.name,"",newFarmer.email,newFarmer.phone);
+    addstaff(newFarmer.name, "", newFarmer.email, newFarmer.phone);
     setFarmers((prevFarmers) => [...prevFarmers, newFarmer]);
     setIsIndividualDetailsPopupOpen(false);
   };
@@ -148,6 +151,11 @@ const VLCCPage = () => {
       </div>
     </div>
   );
+
+  useAuth(() => setIsAuthChecked(true));
+  if (!isAuthChecked) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="farmer-availability-page">

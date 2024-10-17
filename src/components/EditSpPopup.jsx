@@ -3,6 +3,7 @@ import close_button from "../static/img/close-button.svg";
 
 const IndividualEditPopup = ({ isOpen, onClose, onSave, farmer }) => {
   const [formData, setFormData] = useState({ ...farmer });
+  console.log(farmer);
 
   useEffect(() => {
     if (farmer) {
@@ -40,7 +41,7 @@ const IndividualEditPopup = ({ isOpen, onClose, onSave, farmer }) => {
             <input
               type="text"
               name="name"
-              value={formData.name}
+              value={formData.doctorName}
               onChange={handleChange}
               required
             />
@@ -73,7 +74,7 @@ const IndividualEditPopup = ({ isOpen, onClose, onSave, farmer }) => {
             <input
               type="text"
               name="cluster"
-              value={formData.cluster}
+              value={formData.clusterName}
               onChange={handleChange}
               required
             />

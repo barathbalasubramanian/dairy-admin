@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import mail from "../static/img/email.svg";
 import phone from "../static/img/phone.svg";
 import arrow from "../static/img/farmer-arrow.svg";
@@ -7,83 +7,36 @@ import ViewFarmerDetails from "../components/ViewSpDetails.jsx";
 import IndividualDetailsPopup from "../components/AddSpPopup.jsx";
 import "../static/css/FarmerPage.css";
 import { useGlobalContext } from "../Context";
+import useAuth from "./UseAuth.jsx";
 
 const ServiceProviderPage = () => {
-  const { alldoc } = useGlobalContext();
-  console.log(alldoc)
-  const [farmers, setFarmers] = useState([
-    {
-      id: "579HJ77",
-      name: "Saran",
-      cluster: "Cbe",
-      specialist: "5",
-      email: "example@example.com",
-      phone: "9876543210",
-      address: "NO:04, ABC Street, Pollachi, Cbe Tamil Nadu, TN-636 000",
-    },
-    {
-      id: "579HJ77",
-      name: "Saran",
-      cluster: "Cbe",
-      specialist: "5",
-      email: "example@example.com",
-      phone: "9876543210",
-      address: "NO:04, ABC Street, Pollachi, Cbe Tamil Nadu, TN-636 000",
-    },
-    {
-      id: "579HJ77",
-      name: "Saran",
-      cluster: "Cbe",
-      specialist: "6",
-      email: "example@example.com",
-      phone: "9876543210",
-      address: "NO:04, ABC Street, Pollachi, Cbe Tamil Nadu, TN-636 000",
-    },
-    {
-      id: "579HJ77",
-      name: "Saran",
-      cluster: "Cbe",
-      specialist: "6",
-      email: "example@example.com",
-      phone: "9876543210",
-      address: "NO:04, ABC Street, Pollachi, Cbe Tamil Nadu, TN-636 000",
-    },
-    {
-      id: "579HJ77",
-      name: "Saran",
-      cluster: "Cbe",
-      specialist: "6",
-      email: "example@example.com",
-      phone: "9876543210",
-      address: "NO:04, ABC Street, Pollachi, Cbe Tamil Nadu, TN-636 000",
-    },
-    {
-      id: "579HJ77",
-      name: "Saran",
-      cluster: "Cbe",
-      specialist: "6",
-      email: "example@example.com",
-      phone: "9876543210",
-      address: "NO:04, ABC Street, Pollachi, Cbe Tamil Nadu, TN-636 000",
-    },
-  ]);
-
+  const { alldoc = [] } = useGlobalContext();
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isIndividualDetailsPopupOpen, setIsIndividualDetailsPopupOpen] =
     useState(false);
   const [selectedFarmer, setSelectedFarmer] = useState(null);
+  const [farmers, setFarmers] = useState([]); // This state is not used in the current code.
+
+  // Fetch authentication status
+  useAuth(() => setIsAuthChecked(true));
+
+  // Check if authentication is complete
+  useEffect(() => {
+    if (!isAuthChecked) return; // Prevents rendering before auth is checked
+  }, [isAuthChecked]);
 
   const handleAddButtonClick = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+    setIsDropdownOpen((prev) => !prev); // Toggle dropdown
   };
 
   const handleDropdownOptionClick = (option) => {
     if (option === "individual") {
       setIsIndividualDetailsPopupOpen(true);
     } else if (option === "Bulk") {
-      console.log("Bulk Import selected");
+      console.log("Bulk Import selected"); // Implement bulk import functionality
     }
-    setIsDropdownOpen(false);
+    setIsDropdownOpen(false); // Close dropdown after selection
   };
 
   const handleIndividualDetailsClose = () => {
@@ -100,7 +53,7 @@ const ServiceProviderPage = () => {
   };
 
   const handleBackToList = () => {
-    setSelectedFarmer(null);
+    setSelectedFarmer(null); // Reset selected farmer
   };
 
   const handleUpdateFarmer = (updatedFarmer) => {
@@ -109,7 +62,7 @@ const ServiceProviderPage = () => {
         farmer.id === updatedFarmer.id ? updatedFarmer : farmer
       )
     );
-    setSelectedFarmer(updatedFarmer);
+    setSelectedFarmer(updatedFarmer); // Update selected farmer with the latest details
   };
 
   const renderCard = (data, index) => (
@@ -120,29 +73,26 @@ const ServiceProviderPage = () => {
       </div>
       <div className="farmer-card-subhead">
         <div className="farmer-card-subhead-detail">
-          <span>cluster</span>
-          {data.clusterName}
+          <span>Cluster:</span> {data.clusterName}
         </div>
         <div className="farmer-card-subhead-detail">
-          <span>specialist</span>
-          {data.doctorType}
+          <span>Specialist:</span> {data.doctorType}
         </div>
       </div>
       <div className="farmer-card-body">
         <div className="farmer-card-detail">
-          <img src={mail} alt="" />
+          <img src={mail} alt="Email" />
           <span>: </span>
           {data.email}
         </div>
         <div className="farmer-card-detail">
-          <img src={phone} alt="" />
+          <img src={phone} alt="Phone" />
           <span>: </span>
           {data.phone}
         </div>
         <div className="farmer-card-add-detail">
-          <p>Address</p>
-          <span>:</span>
-          {data.address}
+          <p>Address:</p>
+          <span>{data.address}</span>
         </div>
       </div>
       <div className="farmer-card-footer">
@@ -151,11 +101,15 @@ const ServiceProviderPage = () => {
           onClick={() => handleViewMoreClick(data)}
         >
           View More
-          <img src={arrow} alt="" />
+          <img src={arrow} alt="View More" />
         </button>
       </div>
     </div>
   );
+
+  if (!isAuthChecked) {
+    return <div>Loading...</div>; // Show loading state until auth is checked
+  }
 
   return (
     <div className="farmer-availability-page">
@@ -175,7 +129,7 @@ const ServiceProviderPage = () => {
             {isDropdownOpen && (
               <div className="farmer-add-dropdown-menu">
                 <button onClick={() => handleDropdownOptionClick("individual")}>
-                  Enter Individual detail
+                  Enter Individual Details
                 </button>
                 <button onClick={() => handleDropdownOptionClick("Bulk")}>
                   Bulk Import

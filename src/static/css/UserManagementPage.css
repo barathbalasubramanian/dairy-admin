@@ -163,17 +163,6 @@
   width: 100px;
   font-weight: 600;
 }
-.popup-type {
-  cursor: pointer;
-  font-size: 20px;
-}
-
-.popup-info img {
-  padding-left: 50px;
-}
-.popup-info1 img {
-  padding-left: 50px;
-}
 
 .popup-info span {
   font-weight: 600;
@@ -182,6 +171,12 @@
 .popup-info1 span {
   font-weight: 600;
   width: 30px;
+}
+
+.popup-info p {
+  padding: 0%;
+  width: 82%;
+  cursor: not-allowed;
 }
 
 .popup-info input {

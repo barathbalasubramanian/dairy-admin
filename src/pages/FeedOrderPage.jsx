@@ -3,13 +3,15 @@ import FeedOrder from "../components/FeedOrder.jsx";
 import FeedDetails from "../components/FeedDetails.jsx";
 import "../static/css/FeedOrderPage.css";
 import { useGlobalContext } from "../Context";
-import { CSVLink } from "react-csv"; // Import CSVLink from react-csv
+import { CSVLink } from "react-csv";
 import axios from "axios";
+import useAuth from "./UseAuth.jsx";
 
 const FeedPage = () => {
   const { feedOrderdata } = useGlobalContext();
   const [showFarmerDetails, setShowFarmerDetails] = useState(false);
   const [csvData, setCsvData] = useState([]);
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
 
   const handleViewOrder = () => {
     setShowFarmerDetails(true);
@@ -19,11 +21,10 @@ const FeedPage = () => {
     setShowFarmerDetails(false);
   };
 
-  // Prepare CSV data and headers
   const csvHeaders = [
     { label: "Farmer", key: "farmer" },
     { label: "Feed Name", key: "name" },
-    { label: "Quantity", key: "quantity" }
+    { label: "Quantity", key: "quantity" },
   ];
 
   const GettheValue = async () => {
@@ -32,14 +33,18 @@ const FeedPage = () => {
       const res = await axios.get(baseURL + `admin/farmers-feeds`);
       const data = res.data;
       const csvDataFormatted = [
-        { farmer: `Total Farmers: ${data.totalFarmers || 0}`, name: "", quantity: "" },
+        {
+          farmer: `Total Farmers: ${data.totalFarmers || 0}`,
+          name: "",
+          quantity: "",
+        },
         ...data.feeds.map((item) => ({
           farmer: "",
           name: item.Name,
           quantity: item.totalQty,
         })),
       ];
-      setCsvData(csvDataFormatted); // Update state with the fetched CSV data
+      setCsvData(csvDataFormatted);
     } catch (error) {
       console.error("Error fetching feed order data:", error);
     }
@@ -47,9 +52,12 @@ const FeedPage = () => {
 
   useEffect(() => {
     if (feedOrderdata && feedOrderdata.feeds) {
-      // If feedOrderdata is available from global context, use it to set CSV data
       const csvDataFormatted = [
-        { farmer: `Total Farmers: ${feedOrderdata.totalFarmers || 0}`, name: "", quantity: "" },
+        {
+          farmer: `Total Farmers: ${feedOrderdata.totalFarmers || 0}`,
+          name: "",
+          quantity: "",
+        },
         ...feedOrderdata.feeds.map((item) => ({
           farmer: "",
           name: item.Name,
@@ -58,10 +66,14 @@ const FeedPage = () => {
       ];
       setCsvData(csvDataFormatted);
     } else {
-      // Fetch data if not available in global context
       GettheValue();
     }
   }, [feedOrderdata]);
+
+  useAuth(() => setIsAuthChecked(true));
+  if (!isAuthChecked) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

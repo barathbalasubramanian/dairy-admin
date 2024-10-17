@@ -14,9 +14,9 @@ const FeedOrderDetailsPopup = ({ farmerId, onClose }) => {
   );
 
   const formatDate = (dateString) => {
-    const [day, month, year] = dateString.split('/');
+    const [day, month, year] = dateString.split("/");
     const date = new Date(`${year}-${month}-${day}`);
-    return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+    return date.toLocaleDateString("en-US", { month: "short", day: "2-digit" });
   };
 
   const formatOrderData = (orders) => {
@@ -43,29 +43,33 @@ const FeedOrderDetailsPopup = ({ farmerId, onClose }) => {
         <p className="formerid">#{farmerId}</p>
         <div className="feed-order-section">
           <h3>Current Order</h3>
-          {formattedStatus0Orders.map((orders, index) => (
-            <div className="feed-order-card" key={index}>
-              <div className="feed-order-date">
-                <p>{orders.date}</p>
+          <div className="feed-order-scrollable">
+            {" "}
+            {/* Added scrollable div */}
+            {formattedStatus0Orders.map((orders, index) => (
+              <div className="feed-order-card" key={index}>
+                <div className="feed-order-date">
+                  <p>{orders.date}</p>
+                </div>
+                <div className="feed-order-info">
+                  <p className="feed-products">
+                    <strong>Products</strong>
+                    {orders.products.map((product, index) => (
+                      <span key={index}>{product}</span>
+                    ))}
+                  </p>
+                  <p className="feed-vlcc-location">
+                    <strong>VLCC Location</strong> <br />
+                    <span>{orders.vlccLocation}</span>
+                  </p>
+                  <p className="feed-tot-price">
+                    <strong>Total Price</strong> <br />
+                    <span>{orders.totalPrice}</span>
+                  </p>
+                </div>
               </div>
-              <div className="feed-order-info">
-                <p className="feed-products">
-                  <strong>Products</strong>
-                  {orders.products.map((product, index) => (
-                    <span key={index}>{product}</span>
-                  ))}
-                </p>
-                <p className="feed-vlcc-location">
-                  <strong>VLCC Location</strong> <br />
-                  <span>{orders.vlccLocation}</span>
-                </p>
-                <p className="feed-tot-price">
-                  <strong>Total Price</strong> <br />
-                  <span>{orders.totalPrice}</span>
-                </p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
         <div className="feed-order-section">
           <h3>Previous Orders</h3>

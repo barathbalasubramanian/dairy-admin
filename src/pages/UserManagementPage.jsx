@@ -3,20 +3,23 @@ import UserCard from "../components/UserCard.jsx";
 import UserDetailPopup from "../components/UserDetailPopup.jsx";
 import CreateUserPopup from "../components/CreateUserPopup.jsx";
 import AddAdminUser from "../components/AddAdminUser.jsx";
-import active_img from "../static/img/active.svg";
-import unactive_img from "../static/img/unactive.svg";
 import "../static/css/UserManagementPage.css";
-import { useGlobalContext } from "../Context"; 
-
+import { useGlobalContext } from "../Context";
+import useAuth from "./UseAuth.jsx";
 
 const UserManagementPage = () => {
-  const { admin,addAdmin} = useGlobalContext();
+  const { admin = [], addAdmin } = useGlobalContext();
   const [selectedUser, setSelectedUser] = useState(null);
   const [isCreateUserPopupOpen, setIsCreateUserPopupOpen] = useState(false);
-  const [isAddUser,setISAddUser] = useState(false);
-  const [newUser,setNewUser] = useState(); 
-  const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 6;
+  const [isAddUser, setIsAddUser] = useState(false);
+  const [newUser, setNewUser] = useState(null);
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
+
+  useAuth(() => setIsAuthChecked(true));
+
+  if (!isAuthChecked) {
+    return <div>Loading...</div>;
+  }
 
   const handleViewMore = (user) => {
     setSelectedUser(user);
@@ -26,107 +29,72 @@ const UserManagementPage = () => {
     setSelectedUser(null);
   };
 
-  const handleAdduserpopupoff = () => {
-    setISAddUser(false);
-  }
+  const handleAddUserPopupOff = () => {
+    setIsAddUser(false);
+  };
 
   const handleCreateUserClick = () => {
-    setISAddUser(true);
+    setIsAddUser(true);
   };
 
   const handleCloseCreateUserPopup = () => {
     setIsCreateUserPopupOpen(false);
   };
 
-  const handlesavenewuser = (name, type, mail, phno) =>{
+  const handleSaveNewUser = (name, type, mail, phno) => {
     setNewUser({
-      name:name,
-      type:type,
-      mail:mail,
-      phno:phno
-    })
-    setIsCreateUserPopupOpen(true)
-    setISAddUser(false)
-  }
+      name: name,
+      type: type,
+      mail: mail,
+      phno: phno,
+    });
+    setIsCreateUserPopupOpen(true);
+    setIsAddUser(false);
+  };
 
   const handleCreateUser = async (sendEmail) => {
-    await addAdmin(newUser.name, newUser.mail, newUser.phno, "new", newUser.type);
+    await addAdmin(
+      newUser.name,
+      newUser.mail,
+      newUser.phno,
+      "new",
+      newUser.type
+    );
     console.log("User created, send email:", sendEmail);
     setIsCreateUserPopupOpen(false);
   };
 
-  const pageCount = Math.ceil(admin.length / usersPerPage);
-
-  const currentUsers = admin.slice(
-    (currentPage - 1) * usersPerPage,
-    currentPage * usersPerPage
-  );
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
   return (
-    <>
-      <div className="User-Management">
-        <div className="user-add-button">
-          <button onClick={handleCreateUserClick}>
-            <span>+</span>Create New User
-          </button>
-        </div>
-        <div className="user-cards">
-          {currentUsers.map((user, index) => (
-            <UserCard key={index} user={user} onViewMore={handleViewMore} />
-          ))}
-        </div>
-        {selectedUser && (
-          <UserDetailPopup user={selectedUser} onClose={handleClosePopup} />
-        )}
-        {isAddUser && (
-          <AddAdminUser onClose={handleAdduserpopupoff} onsave={handlesavenewuser}/>
-        )}
-        <CreateUserPopup
-          isOpen={isCreateUserPopupOpen}
-          onClose={handleCloseCreateUserPopup}
-          onCreate={handleCreateUser}
-        />
-        <div className="pagination">
-          <button
-            onClick={() => handlePageChange(1)}
-            disabled={currentPage === 1}
-          >
-            {"<<"}
-          </button>
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            {"<"}
-          </button>
-          {[...Array(pageCount).keys()].map((number) => (
-            <button
-              key={number}
-              onClick={() => handlePageChange(number + 1)}
-              className={currentPage === number + 1 ? "active" : ""}
-            >
-              {number + 1}
-            </button>
-          ))}
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === pageCount}
-          >
-            {">"}
-          </button>
-          <button
-            onClick={() => handlePageChange(pageCount)}
-            disabled={currentPage === pageCount}
-          >
-            {">>"}
-          </button>
-        </div>
+    <div className="User-Management">
+      <div className="user-add-button">
+        <button onClick={handleCreateUserClick}>
+          <span>+</span>Create New User
+        </button>
       </div>
-    </>
+      <div className="user-cards">
+        {admin.map((user, index) => (
+          <UserCard
+            key={user.id || index} // Use index as fallback if id is not available
+            user={user}
+            onViewMore={handleViewMore}
+          />
+        ))}
+      </div>
+      {selectedUser && (
+        <UserDetailPopup user={selectedUser} onClose={handleClosePopup} />
+      )}
+      {isAddUser && (
+        <AddAdminUser
+          onClose={handleAddUserPopupOff}
+          onSave={handleSaveNewUser}
+        />
+      )}
+      <CreateUserPopup
+        isOpen={isCreateUserPopupOpen}
+        onClose={handleCloseCreateUserPopup}
+        onCreate={handleCreateUser}
+      />
+    </div>
   );
 };
 

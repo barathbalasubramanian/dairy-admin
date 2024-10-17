@@ -9,6 +9,7 @@ const IndividualEditPopup = ({ isOpen, onClose, onSave, farmer }) => {
     email: "",
     phone: "",
   });
+  console.log(farmer);
 
   useEffect(() => {
     if (farmer) {

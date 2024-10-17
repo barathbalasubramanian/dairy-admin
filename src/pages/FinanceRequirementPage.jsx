@@ -6,32 +6,26 @@ import LoanPreviousRequest from "../components/LoanPreviousRequest.jsx";
 import InsurancePreviousRequest from "../components/InsurancePreviousRequest.jsx";
 import "../static/css/FinanceRequirementPage.css";
 import { useGlobalContext } from "../Context";
+import useAuth from "./UseAuth.jsx";
 
 const FinanceRequirementPage = () => {
   const { CurrCost, connect, cancelLoan, finalLoan } = useGlobalContext();
   const [activeTab, setActiveTab] = useState("Loan");
-  const [currentPage, setCurrentPage] = useState(1);
   const [isViewingPreviousRequest, setIsViewingPreviousRequest] =
     useState(false);
   const [isConnectPopupOpen, setIsConnectPopupOpen] = useState(false);
   const [isCancelPopupOpen, setIsCancelPopupOpen] = useState(false);
   const [isCompletePopupOpen, setIsCompletePopupOpen] = useState(false);
   const [selectedFarmer, setSelectedFarmer] = useState(null);
-  const itemsPerPage = 3;
+  const { loan, setLoan } = useGlobalContext();
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
 
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
-    setCurrentPage(1);
   };
 
-  const getCurrentPageData = (data) => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return data.slice(startIndex, endIndex);
-  };
-
-  const loanDataToDisplay = getCurrentPageData(CurrCost.loan);
-  const insuranceDataToDisplay = getCurrentPageData(CurrCost.insurance);
+  const loanDataToDisplay = CurrCost.loan;
+  const insuranceDataToDisplay = CurrCost.insurance;
 
   const handleViewPreviousRequest = () => {
     setIsViewingPreviousRequest(true);
@@ -43,10 +37,9 @@ const FinanceRequirementPage = () => {
   };
 
   const handleConnectConfirm = async () => {
-    await connect(selectedFarmer.Ticket_id)
+    await connect(selectedFarmer.Ticket_id);
     console.log(`Confirmed connection for ${selectedFarmer.Farmer_Name}`);
     setIsConnectPopupOpen(false);
-    
   };
 
   const handleConnectClosePopup = () => {
@@ -60,9 +53,8 @@ const FinanceRequirementPage = () => {
 
   const handleCancelConfirm = async () => {
     await cancelLoan(selectedFarmer.Ticket_id);
-    console.log(`${activeTab} Cancelled for ${selectedFarmer.farmerName}`);
+    console.log(`${activeTab} Cancelled for ${selectedFarmer.Farmer_Name}`);
     setIsCancelPopupOpen(false);
-
   };
 
   const handleCancelClosePopup = () => {
@@ -76,7 +68,7 @@ const FinanceRequirementPage = () => {
   };
 
   const handleCompleteConfirm = () => {
-    console.log(`${activeTab} Completed for ${selectedFarmer.farmerName}`);
+    console.log(`${activeTab} Completed for ${selectedFarmer.Farmer_Name}`);
     setIsCompletePopupOpen(false);
   };
 
@@ -143,14 +135,10 @@ const FinanceRequirementPage = () => {
     ));
   };
 
-  const pageCount = Math.ceil(
-    (activeTab === "Loan" ? CurrCost.loan.length : CurrCost.insurance.length) /
-      itemsPerPage
-  );
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+  useAuth(() => setIsAuthChecked(true));
+  if (!isAuthChecked) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -191,41 +179,6 @@ const FinanceRequirementPage = () => {
               {activeTab === "Loan"
                 ? renderData(loanDataToDisplay)
                 : renderData(insuranceDataToDisplay)}
-            </div>
-            <div className="pagination">
-              <button
-                onClick={() => handlePageChange(1)}
-                disabled={currentPage === 1}
-              >
-                {"<<"}
-              </button>
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-              >
-                {"<"}
-              </button>
-              {[...Array(pageCount).keys()].map((number) => (
-                <button
-                  key={number}
-                  onClick={() => handlePageChange(number + 1)}
-                  className={currentPage === number + 1 ? "active" : ""}
-                >
-                  {number + 1}
-                </button>
-              ))}
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === pageCount}
-              >
-                {">"}
-              </button>
-              <button
-                onClick={() => handlePageChange(pageCount)}
-                disabled={currentPage === pageCount}
-              >
-                {">>"}
-              </button>
             </div>
           </div>
         </div>

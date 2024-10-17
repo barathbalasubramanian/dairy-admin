@@ -4,6 +4,7 @@ import close_button from "../static/img/close-button.svg";
 
 const UserDetailPopup = ({ user, onClose }) => {
   if (!user) return null;
+  console.log(user);
 
   return (
     <div className="popup-overlay">
@@ -20,14 +21,12 @@ const UserDetailPopup = ({ user, onClose }) => {
           <div className="popup-info">
             <label>User ID</label>
             <span>:</span>
-            <input value={user.userId} readOnly />
+            <input value={user.adminId} readOnly />
           </div>
           <div className="popup-info">
             <label>Type </label>
             <span>:</span>
-            <lable className="popup-type">
-              {user.type} <img src={down_arrow} alt="" />{" "}
-            </lable>
+            <p>{user.type === 0 ? "Super Admin" : "Admin"}</p>
           </div>
           <div className="popup-info">
             <label>Email ID </label>
@@ -37,7 +36,7 @@ const UserDetailPopup = ({ user, onClose }) => {
           <div className="popup-info">
             <label>Phone </label>
             <span>:</span>
-            <input value={user.phone} readOnly />
+            <input value={user.phoneNumber} readOnly />
           </div>
         </div>
         <div className="popup-buttons">

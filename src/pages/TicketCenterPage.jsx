@@ -3,44 +3,39 @@ import Tickets from "../components/Tickets.jsx";
 import AllTickets from "../components/AllTickets.jsx";
 import "../static/css/TicketCenterPage.css";
 import { useGlobalContext } from "../Context";
+import useAuth from "./UseAuth.jsx";
 
 const TicketCenterPage = () => {
-  const { TicketCount } = useGlobalContext();
+  const { TicketCount = 0 } = useGlobalContext();
 
   const [showTicketDetails, setShowTicketDetails] = useState(false);
-  const [isToggled, setIsToggled] = useState(false);
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
 
-  const handleViewOrder = () => {
-    setShowTicketDetails(true);
-  };
+  useAuth(() => setIsAuthChecked(true));
 
-  const handleBack = () => {
-    setShowTicketDetails(false);
-  };
+  if (!isAuthChecked) {
+    return <div>Loading...</div>;
+  }
 
-  const handleToggle = () => {
-    setIsToggled(!isToggled);
-  };
+  const handleViewOrder = () => setShowTicketDetails(true);
+  const handleBack = () => setShowTicketDetails(false);
 
   return (
-    <>
-      <div className="ticket-center">
-        <div className="call-center">
-          
-        </div>
-        {!showTicketDetails && (
-          <div className="ticket-center-content">
-            <Tickets />
-            <div className="view-button">
-              <button className="view-all-button" onClick={handleViewOrder}>
-                View All Tickets <span className="arrow">›</span>
-              </button>
-            </div>
+    <div className="ticket-center">
+      <div className="call-center"></div>
+      {!showTicketDetails ? (
+        <div className="ticket-center-content">
+          <Tickets />
+          <div className="view-button">
+            <button className="view-all-button" onClick={handleViewOrder}>
+              View All Tickets <span className="arrow">›</span>
+            </button>
           </div>
-        )}
-        {showTicketDetails && <AllTickets handleBack={handleBack} />}
-      </div>
-    </>
+        </div>
+      ) : (
+        <AllTickets handleBack={handleBack} />
+      )}
+    </div>
   );
 };
 

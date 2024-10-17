@@ -7,13 +7,16 @@ import IndividualEditPopup from "../components/EditClusterPopup.jsx";
 import edit_img from "../static/img/edit-img.svg";
 import "../static/css/FarmerPage.css";
 import { useGlobalContext } from "../Context";
+import useAuth from "./UseAuth.jsx";
 
 const ClusterPage = () => {
-  const { cluster,addcluster,editCluster } = useGlobalContext();
+  const { cluster = [], addcluster, editCluster } = useGlobalContext();
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
+
   const [farmers, setFarmers] = useState([
     {
       id: "579HJ77",
-      cluster:"Neelambur",
+      cluster: "Neelambur",
       name: "Saran",
       vlcc: "15",
       farmers: "5",
@@ -23,7 +26,7 @@ const ClusterPage = () => {
     },
     {
       id: "579HJ77",
-      cluster:"Neelambur",
+      cluster: "Neelambur",
       name: "Saran",
       vlcc: "15",
       farmers: "5",
@@ -33,7 +36,7 @@ const ClusterPage = () => {
     },
     {
       id: "579HJ77",
-      cluster:"Neelambur",
+      cluster: "Neelambur",
       name: "Saran",
       vlcc: "14",
       farmers: "6",
@@ -43,7 +46,7 @@ const ClusterPage = () => {
     },
     {
       id: "579HJ77",
-      cluster:"Neelambur",
+      cluster: "Neelambur",
       name: "Saran",
       vlcc: "10",
       farmers: "6",
@@ -53,7 +56,7 @@ const ClusterPage = () => {
     },
     {
       id: "579HJ77",
-      cluster:"Neelambur",
+      cluster: "Neelambur",
       name: "Saran",
       vlcc: "18",
       farmers: "6",
@@ -63,7 +66,7 @@ const ClusterPage = () => {
     },
     {
       id: "579HJ77",
-      cluster:"Neelambur",
+      cluster: "Neelambur",
       name: "Saran",
       vlcc: "12",
       farmers: "6",
@@ -102,7 +105,12 @@ const ClusterPage = () => {
   };
 
   const handleAddNewFarmer = (newFarmer) => {
-    addcluster(newFarmer.cluster,newFarmer.name,newFarmer.email,newFarmer.phone);
+    addcluster(
+      newFarmer.cluster,
+      newFarmer.name,
+      newFarmer.email,
+      newFarmer.phone
+    );
     setFarmers((prevFarmers) => [...prevFarmers, newFarmer]);
     setIsIndividualDetailsPopupOpen(false);
   };
@@ -113,7 +121,13 @@ const ClusterPage = () => {
   };
 
   const handleUpdateFarmer = (updatedFarmer) => {
-    editCluster(updatedFarmer.id,updatedFarmer.cluster,updatedFarmer.name,updatedFarmer.email,updatedFarmer.phone);
+    editCluster(
+      updatedFarmer.id,
+      updatedFarmer.cluster,
+      updatedFarmer.name,
+      updatedFarmer.email,
+      updatedFarmer.phone
+    );
     setFarmers((prevFarmers) =>
       prevFarmers.map((farmer) =>
         farmer.id === updatedFarmer.id ? updatedFarmer : farmer
@@ -170,6 +184,11 @@ const ClusterPage = () => {
       </div>
     </div>
   );
+
+  useAuth(() => setIsAuthChecked(true));
+  if (!isAuthChecked) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="farmer-availability-page">

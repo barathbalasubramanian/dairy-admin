@@ -7,7 +7,7 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const navigate = useNavigate();
   const baseURL = "https://test.quindltechnologies.com/";
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ userid: -1 });
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(false);
   const [feedOrderdata, setfeedOrderData] = useState();
@@ -28,7 +28,7 @@ const AppProvider = ({ children }) => {
   const [cluster, setCluster] = useState();
   const [staff, setStaff] = useState();
   const [alldoc, setAllDoc] = useState();
-  const [cow,setCow] = useState();
+  const [cow, setCow] = useState();
 
   const getAllData = async () => {
     await feedOrder();
@@ -58,6 +58,35 @@ const AppProvider = ({ children }) => {
       console.log(res.data);
       setUser(res.data.user);
       setToken(res.data.token);
+      localStorage.setItem("token", res.data.token);
+      await feedOrder();
+      await getFarmerorder();
+      await getAllfarmerOrder();
+      await getFeed();
+      await ticketCount();
+      await allTicket();
+      await currCost();
+      await precost();
+      await getadmin();
+      await getAllDoc();
+      await getALlFarmer();
+      await getAllVlcc();
+      await getAllBmc();
+      await getAllCluster();
+      await getallstaff();
+      await getalldoc();
+      navigate("/FeedOrderPage");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const CheckToken = async (token) => {
+    try {
+      const res = await axios.post(baseURL + "admin/checktoken", {
+        token: token,
+      });
+      setUser(res.data.user);
       await feedOrder();
       await getFarmerorder();
       await getAllfarmerOrder();
@@ -85,8 +114,7 @@ const AppProvider = ({ children }) => {
       const res = await axios.get(baseURL + `admin/farmers-feeds`);
       console.log(res.data);
       setfeedOrderData(res.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const getFarmerorder = async () => {
@@ -284,56 +312,49 @@ const AppProvider = ({ children }) => {
     try {
       const res = await axios.get(baseURL + `admin/getdocdetails`);
       setSp(res.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const getALlFarmer = async () => {
     try {
       const res = await axios.get(baseURL + `admin`);
       setFarmer(res.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const getAllVlcc = async () => {
     try {
       const res = await axios.get(baseURL + `admin/getvlcc`);
       SetVlcc(res.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const getAllBmc = async () => {
     try {
       const res = await axios.get(baseURL + `admin/getbmc`);
       setBmc(res.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const getAllCluster = async () => {
     try {
       const res = await axios.get(baseURL + `admin/getallcluster`);
       setCluster(res.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const getallstaff = async () => {
     try {
       const res = await axios.get(baseURL + `admin/getallstaff`);
       setStaff(res.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const getalldoc = async () => {
     try {
       const res = await axios.get(baseURL + `admin/getalldoc`);
       setAllDoc(res.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const addfarmer = async (
@@ -355,8 +376,7 @@ const AppProvider = ({ children }) => {
         address_line3,
         VLCC_id,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const addcow = async (farmer_id, breed, cow_age_year, cow_age_month) => {
@@ -368,8 +388,7 @@ const AppProvider = ({ children }) => {
         cow_age_month,
       });
       setAllDoc(res.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const addvlcc = async (name, personname, email, phno, BMCid) => {
@@ -381,8 +400,7 @@ const AppProvider = ({ children }) => {
         phno,
         BMCid,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const addbmc = async (name, personname, email, phno, clusterid) => {
@@ -394,8 +412,7 @@ const AppProvider = ({ children }) => {
         phno,
         clusterid,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const addcluster = async (name, personname, email, phno) => {
@@ -406,8 +423,7 @@ const AppProvider = ({ children }) => {
         email,
         phno,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const addstaff = async (userName, password, email, phno) => {
@@ -418,8 +434,7 @@ const AppProvider = ({ children }) => {
         email,
         phno,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const adddoc = async (
@@ -447,65 +462,61 @@ const AppProvider = ({ children }) => {
         address,
         clusterid,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   const getcowbyid = async (id) => {
     try {
-      const res = await axios.get(baseURL + `admin/getcow/`+id);
+      const res = await axios.get(baseURL + `admin/getcow/` + id);
       console.log(res.data);
       setCow(res.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
-  const editVlcc = async (id,name, personname, email, phno) => {
+  const editVlcc = async (id, name, personname, email, phno) => {
     try {
-      const res = await axios.post(baseURL + `admin/editvlcc`+id, {
+      const res = await axios.post(baseURL + `admin/editvlcc` + id, {
         name,
         personname,
         email,
         phno,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
-  const editCluster = async (id,name, personname, email, phno) => {
+  const editCluster = async (id, name, personname, email, phno) => {
     try {
-      const res = await axios.post(baseURL + `admin/editcluster`+id, {
+      const res = await axios.post(baseURL + `admin/editcluster` + id, {
         name,
         personname,
         email,
         phno,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
-  const addbulk = async(selectedFile,link) => {
+  const addbulk = async (selectedFile, link) => {
     if (!selectedFile) {
       return;
     }
 
     const formData = new FormData();
-    formData.append('file', selectedFile);
+    formData.append("file", selectedFile);
 
     try {
-      const response = await axios.post(baseURL+link, formData, {
+      const response = await axios.post(baseURL + link, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
-
     } catch (error) {
-      console.error('Error uploading the file:', error);
+      console.error("Error uploading the file:", error);
     }
-  }
+  };
 
   return (
     <AppContext.Provider
       value={{
+        user,
         feedOrderdata,
         currentFeedPeriodData,
         previousFeedPeriodData,
@@ -525,6 +536,7 @@ const AppProvider = ({ children }) => {
         staff,
         alldoc,
         cow,
+        CheckToken,
         editCluster,
         editVlcc,
         getcowbyid,

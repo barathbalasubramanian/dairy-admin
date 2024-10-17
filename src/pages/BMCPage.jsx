@@ -7,14 +7,16 @@ import IndividualEditPopup from "../components/EditBmcPopup.jsx";
 import edit_img from "../static/img/edit-img.svg";
 import "../static/css/FarmerPage.css";
 import { useGlobalContext } from "../Context";
+import useAuth from "./UseAuth.jsx";
 
 const VLCCPage = () => {
-  const { bmc,addbmc } = useGlobalContext();
-  
+  const { bmc = [], addbmc } = useGlobalContext();
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
+
   const [farmers, setFarmers] = useState([
     {
       id: "579HJ77",
-      bmc:"Neelambur",
+      bmc: "Neelambur",
       name: "Saran",
       vlcc: "15",
       farmers: "5",
@@ -23,7 +25,7 @@ const VLCCPage = () => {
     },
     {
       id: "579HJ77",
-      bmc:"Neelambur",
+      bmc: "Neelambur",
       name: "Saran",
       vlcc: "15",
       farmers: "5",
@@ -32,7 +34,7 @@ const VLCCPage = () => {
     },
     {
       id: "579HJ77",
-      bmc:"Neelambur",
+      bmc: "Neelambur",
       name: "Saran",
       vlcc: "14",
       farmers: "6",
@@ -41,7 +43,7 @@ const VLCCPage = () => {
     },
     {
       id: "579HJ77",
-      bmc:"Neelambur",
+      bmc: "Neelambur",
       name: "Saran",
       vlcc: "10",
       farmers: "6",
@@ -50,7 +52,7 @@ const VLCCPage = () => {
     },
     {
       id: "579HJ77",
-      bmc:"Neelambur",
+      bmc: "Neelambur",
       name: "Saran",
       vlcc: "18",
       farmers: "6",
@@ -59,7 +61,7 @@ const VLCCPage = () => {
     },
     {
       id: "579HJ77",
-      bmc:"Neelambur",
+      bmc: "Neelambur",
       name: "Saran",
       vlcc: "12",
       farmers: "6",
@@ -97,7 +99,13 @@ const VLCCPage = () => {
   };
 
   const handleAddNewFarmer = (newFarmer) => {
-    addbmc(newFarmer.bmc,newFarmer.name,newFarmer.email,newFarmer.phone,newFarmer.vlcc);
+    addbmc(
+      newFarmer.bmc,
+      newFarmer.name,
+      newFarmer.email,
+      newFarmer.phone,
+      newFarmer.vlcc
+    );
     setFarmers((prevFarmers) => [...prevFarmers, newFarmer]);
     setIsIndividualDetailsPopupOpen(false);
   };
@@ -160,6 +168,11 @@ const VLCCPage = () => {
       </div>
     </div>
   );
+
+  useAuth(() => setIsAuthChecked(true));
+  if (!isAuthChecked) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="farmer-availability-page">

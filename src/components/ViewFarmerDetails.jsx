@@ -5,18 +5,18 @@ import downarrow from "../static/img/nav/cowdownarrow.svg";
 import FarmerTicketsTable from "../components/FarmerTicketsTable.jsx";
 import IndividualEditPopup from "../components/EditIndividualFarmerPopup.jsx";
 import CowManagementPopup from "../components/CowManagementPopup.jsx";
-import AddCowPopup from "../components/AddCowPopup.jsx"; // Import the AddCowPopup component
+import AddCowPopup from "../components/AddCowPopup.jsx";
 import "../static/css/ViewFarmerDetails.css";
 import { useGlobalContext } from "../Context";
 
-
 const ViewFarmerDetails = ({ farmer, onBack, onUpdateFarmer }) => {
-  const { getcowbyid,cow,addcow } = useGlobalContext();
+  const { getcowbyid, cow, addcow } = useGlobalContext();
 
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isCowManagementPopupOpen, setIsCowManagementPopupOpen] = useState(false);
-  const [isAddCowPopupOpen, setIsAddCowPopupOpen] = useState(false); // State for AddCowPopup
+  const [isCowManagementPopupOpen, setIsCowManagementPopupOpen] =
+    useState(false);
+  const [isAddCowPopupOpen, setIsAddCowPopupOpen] = useState(false);
 
   const handleEditClick = () => {
     setIsEditPopupOpen(true);
@@ -32,10 +32,10 @@ const ViewFarmerDetails = ({ farmer, onBack, onUpdateFarmer }) => {
 
   const handleDropdownOptionClick = (option) => {
     if (option === "Manage Cows") {
-      getcowbyid(farmer.Former_id)
+      getcowbyid(farmer.Former_id);
       setIsCowManagementPopupOpen(true);
     } else if (option === "Add Cow") {
-      setIsAddCowPopupOpen(true); // Open AddCowPopup
+      setIsAddCowPopupOpen(true);
     }
     setIsDropdownOpen(false);
   };
@@ -45,11 +45,10 @@ const ViewFarmerDetails = ({ farmer, onBack, onUpdateFarmer }) => {
   };
 
   const handleAddCowPopupClose = (data) => {
-    addcow(farmer.Former_id,data.breed,data.age,0);
-    setIsAddCowPopupOpen(false); // Close AddCowPopup
+    addcow(farmer.Former_id, data.breed, data.age, 0);
+    setIsAddCowPopupOpen(false);
   };
 
-  // Ensure cowList is part of farmer or provide default value
   const cowList = farmer.cowList || [];
 
   return (
@@ -106,7 +105,9 @@ const ViewFarmerDetails = ({ farmer, onBack, onUpdateFarmer }) => {
             <div className="farmer-details-row">
               <p>Address</p>
               <span>:</span>
-              {farmer.Address.Address_line1}{farmer.Address.Address_line2}{farmer.Address.Address_line3}
+              {farmer.Address.Address_line1}
+              {farmer.Address.Address_line2}
+              {farmer.Address.Address_line3}
             </div>
             <div className="farmer-details-row">
               <p>VSP</p>
@@ -128,8 +129,7 @@ const ViewFarmerDetails = ({ farmer, onBack, onUpdateFarmer }) => {
           </div>
         </div>
         <div className="farmer-tickets-table">
-          <FarmerTicketsTable 
-          farmer={farmer}/>
+          <FarmerTicketsTable farmer={farmer} />
         </div>
       </div>
       <IndividualEditPopup
