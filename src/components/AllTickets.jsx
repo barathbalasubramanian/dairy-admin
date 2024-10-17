@@ -137,7 +137,12 @@ const AllTickets = ({ handleBack }) => {
                   <td>{ticket.ticketNumber}</td>
                   <td>{ticket.formerID}</td>
                   <td>{ticket.serviceType}</td>
-                  <td>{ticket.assignedDateTime}</td>
+                  <td>{new Date(ticket.assignedDateTime).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </td>
                   <td>{ticket.assignedBy}</td>
                 </tr>
               ))}

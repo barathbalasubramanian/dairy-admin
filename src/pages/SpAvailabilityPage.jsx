@@ -164,8 +164,8 @@ const SpAvailabilityPage = () => {
         </div>
 
       {/* Filter Options */}
-      <div className="flex flex-col justify-center py-4 px-32 w-full">
-        <div className="font-medium text-lg py-4">Filter :</div>
+      <div className="flex flex-col py-4 px-8 w-[60%]">
+        <div className="font-medium text-lg py-2">Filter :</div>
         <div className="w-full flex justify-center gap-4 items-center p-4 bg-gray-100 rounded-lg shadow-lg transition-all duration-300">
           <select
             value={typeFilter}
