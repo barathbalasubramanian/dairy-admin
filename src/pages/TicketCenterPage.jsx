@@ -26,13 +26,7 @@ const TicketCenterPage = () => {
     <>
       <div className="ticket-center">
         <div className="call-center">
-          <label className="call-center-label">Call Center Desk</label>
-          <div
-            className={`toggle-switch ${isToggled ? "toggled" : ""}`}
-            onClick={handleToggle}
-          >
-            <div className="toggle-dot"></div>
-          </div>
+          
         </div>
         {!showTicketDetails && (
           <div className="ticket-center-content">

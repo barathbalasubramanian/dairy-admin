@@ -3,10 +3,10 @@ import FeedOrder from "../components/FeedOrder.jsx";
 import FeedDetails from "../components/FeedDetails.jsx";
 import "../static/css/FeedOrderPage.css";
 import { useGlobalContext } from "../Context";
-import { jsPDF } from "jspdf"; // Import jsPDF
+import { CSVLink } from "react-csv"; // Import CSVLink from react-csv
 
 const FeedPage = () => {
-  const { feed } = useGlobalContext();
+  const { feedOrderdata } = useGlobalContext();
   const [showFarmerDetails, setShowFarmerDetails] = useState(false);
 
   const handleViewOrder = () => {
@@ -17,22 +17,22 @@ const FeedPage = () => {
     setShowFarmerDetails(false);
   };
 
-  // Function to handle exporting as PDF
-  const handleExport = () => {
-    const doc = new jsPDF();
+  // Prepare CSV data and headers
+  const csvHeaders = [
+    { label: "Farmer", key: "farmer" },
+    { label: "Feed Name", key: "name" },
+    { label: "Quantity", key: "quantity" }
+  ];
 
-    // Add content to the PDF
-    doc.setFontSize(16);
-    doc.text("Feed Order Details", 20, 20);
-    
-    // Assuming 'feed' is an array of feed orders, you can loop through it to add details
-    feed.forEach((item, index) => {
-      doc.text(`Order ${index + 1}: ${item.name} - ${item.quantity}`, 20, 30 + (index * 10));
-    });
-
-    // Save the PDF
-    doc.save("feed_order_details.pdf");
-  };
+  // CSV data structure including total farmers and each feed item
+  const csvData = [
+    { farmer: `Total Farmers: ${feedOrderdata.totalFarmers}`, name: "", quantity: "" }, // Total farmers
+    ...feedOrderdata.feeds.map((item, index) => ({
+      farmer: "",
+      name: item.Name,
+      quantity: item.totalQty,
+    })),
+  ];
 
   return (
     <>
@@ -43,9 +43,15 @@ const FeedPage = () => {
             <button className="view-order-button" onClick={handleViewOrder}>
               View Order <span className="arrow">›</span>
             </button>
-            <button className="export-button" onClick={handleExport}>
-              Export
-            </button>
+            
+            <CSVLink
+              data={csvData}
+              headers={csvHeaders}
+              filename="feed_order_details.csv"
+              className="export-button px-12 "
+            >
+              Export as CSV
+            </CSVLink>
           </div>
         </div>
       )}

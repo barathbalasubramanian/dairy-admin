@@ -89,27 +89,22 @@ const Nav = () => {
 
   return (
     <>
-      <div className="nav-container">
+      <div className="nav-container ">
         <div className="nav-box">
           <div className="nav-head">
             <img className="logoimg" src={logo} alt="Logo" />
           </div>
-          <div className="nav-admin">
+          <div className="nav-admin mb-4">
             <div className="admin-container">
               <div className="admin-content">
                 <p className="admin-name">Krishna</p>
                 <p className="admin-type">Super Admin</p>
-                <p className="admin-id">Emp ID: DD0045</p>
+                <p className="admin-id mb-5">Emp ID: DD0045</p>
               </div>
               <div
                 className="admin-setting"
-                onClick={() => navigate("/AdminsettingsPage")}
               >
-                <p>
-                  <img src={settings} alt="settings" />
-                  Manage Profile
-                  <img className="downarrow" src={downarrow} alt="" />
-                </p>
+                
               </div>
             </div>
           </div>
@@ -129,10 +124,10 @@ const Nav = () => {
                 </div>
                 {dataManagementOpen && (
                   <div className="dropdown-container">
-                    <div onClick={handleUserDropdownToggle} className="dropdown-toggle">
+                    <div onClick={handleUserDropdownToggle} className="dropdown-toggle mr-2">
                       <p>
                         {selectedUser || "User Type"}{" "}
-                        <img className="arrow" alt="Arrow" src={arrow} />
+                        <img className="arrow ml-4" alt="Arrow" src={arrow} />
                       </p>
                     </div>
                     {userDropdownOpen && (
@@ -152,7 +147,7 @@ const Nav = () => {
                     <div onClick={handleAreaDropdownToggle} className="dropdown-toggle">
                       <p>
                         {selectedArea || "Area Type"}{" "}
-                        <img className="arrow" alt="Arrow" src={arrow} />
+                        <img className="arrow ml-4" alt="Arrow" src={arrow} />
                       </p>
                     </div>
                     {areaDropdownOpen && (

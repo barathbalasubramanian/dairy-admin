@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../static/css/AllTickets.css";
 import { useGlobalContext } from "../Context";
-
+import { ArrowLeft } from 'react-feather';
 const AllTickets = ({ handleBack }) => {
   const { AllTicket } = useGlobalContext();
 
@@ -41,73 +41,78 @@ const AllTickets = ({ handleBack }) => {
   };
 
   return (
+    
     <div className="all-tickets">
-      <div className="progress-bar-container">
-        <div className="progress-bar">
-          {steps.map((label, index) => (
-            <div
-              key={index}
-              className={`progress-bar-step ${activeStep === index + 1 ? "progress-bar-active" : ""}`}
-              onClick={() => setActiveStep(index + 1)}
-            >
-              <div className={`progress-bar-circle ${activeStep === index + 1 ? "progress-bar-active" : ""}`}>
-                {activeStep === index + 1 ? "•" : ""}
-              </div>
-              <div className={`progress-bar-label ${activeStep === index + 1 ? "progress-bar-active-label" : ""}`}>
-                {label}
-              </div>
-            </div>
-          ))}
-          <div
-            className="progress-bar-indicator"
-            style={{
-              width: `${40 / steps.length}%`,
-              left: `calc(${(activeStep - 1) * (127 / steps.length) - 5}% + ${0 / steps.length + 8 / 2}%)`,
-            }}
-          ></div>
-        </div>
-        <div className="progress-bar-line"></div>
-      </div>
+      <div className="flex items-center mb-4">
+      <button 
+        onClick={handleBack} 
+        className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
+      >
+        <ArrowLeft />
+        <span>Back</span>
+      </button>
+    </div>
+      <div className="progress-bar-container w-full p-4">
+  <div className="progress-bar grid grid-cols-3 gap-4 w-full">
+    {steps.map((label, index) => (
+      <button
+        key={index}
+        className={`
+          py-3 px-4 rounded-lg transition-colors
+          ${activeStep === index + 1
+            ? index === 0
+              ? "bg-blue-500 text-white"
+              : index === 1
+              ? "bg-yellow-500 text-white"
+              : "bg-green-500 text-white"
+            : "bg-gray-200 text-gray-700 hover:bg-gray-300"}
+        `}
+        onClick={() => setActiveStep(index + 1)}
+      >
+        {label}
+      </button>
+    ))}
+  </div>
+</div>
 
       {/* Filter Section */}
-      <div className="flex flex-col mb-8">
-        <div className="font-medium text-lg mb-2">Filter :</div>
-        <div className="w-full flex flex-wrap gap-4  flex justify-center items-center p-4 bg-gray-100 rounded-lg shadow-md">
-          <input
-            type="month"
-            value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
-            placeholder="MM/YYYY"
-            className="p-2 border border-gray-300 rounded-md w-full md:w-auto"
-          />
-          <select
-            value={typeFilter}
-            onChange={(e) => setTypeFilter(e.target.value)}
-            className="p-2 border border-gray-300 rounded-md w-full md:w-auto"
-          >
-            <option value="">All Types</option>
-            <option value="Veterinary">Veterinary</option>
-            <option value="AI">AI</option>
-            <option value="Feed">Feed</option>
-            <option value="Insurance">Insurance</option>
-            <option value="Loan">Loan</option>
-          </select>
-          <select
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value)}
-            className="p-2 border border-gray-300 rounded-md w-full md:w-auto"
-          >
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-          </select>
-          <button
-            onClick={handleClearFilters}
-            className="bg-red-500 text-white py-2 px-4 rounded-md"
-          >
-            Clear Filters
-          </button>
-        </div>
-      </div>
+  <div className="flex flex-col mb-8">
+  <div className="font-medium text-lg mb-2">Filter :</div>
+  <div className="w-full grid grid-cols-4 gap-4 p-4 bg-gray-100 rounded-lg shadow-md">
+    <input
+      type="month"
+      value={selectedDate}
+      onChange={(e) => setSelectedDate(e.target.value)}
+      className="p-2 border border-gray-300 rounded-md w-full"
+    />
+    <select
+      value={typeFilter}
+      onChange={(e) => setTypeFilter(e.target.value)}
+      className="p-2 border border-gray-300 rounded-md w-full"
+    >
+      <option value="">All Types</option>
+      <option value="Veterinary">Veterinary</option>
+      <option value="AI">AI</option>
+      <option value="Feed">Feed</option>
+      <option value="Insurance">Insurance</option>
+      <option value="Loan">Loan</option>
+    </select>
+    <select
+      value={sortOrder}
+      onChange={(e) => setSortOrder(e.target.value)}
+      className="p-2 border border-gray-300 rounded-md w-full"
+    >
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+    <button
+      onClick={handleClearFilters}
+      className="bg-red-500 text-white py-2 px-4 rounded-md w-full"
+    >
+      Clear Filters
+    </button>
+  </div>
+</div>
 
 
       {/* Tickets Table */}

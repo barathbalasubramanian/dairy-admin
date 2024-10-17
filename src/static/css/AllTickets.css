@@ -13,7 +13,7 @@
   padding: 20px;
   border-radius: 8px;
   box-sizing: border-box;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .progress-bar-container {
@@ -46,7 +46,7 @@
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  border: 2px solid black;
+ 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,7 +78,7 @@
   position: absolute;
   top: 110%;
   height: 5px;
-  background-color: #4695b8;
+  background-color: #f2f2f2;
   z-index: 1;
   transform: translateY(-50%);
   border-radius: 2px;
@@ -117,7 +117,7 @@
 .all-tickets-table th,
 .all-tickets-table td {
   width: 200px;
-  border: 2px solid #000;
+  border: 1px solid #6d6c6c;
   padding: 10px;
   text-align: center;
   font-size: 14px;

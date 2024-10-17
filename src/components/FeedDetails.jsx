@@ -3,8 +3,9 @@ import down_up_arrow from "../static/img/down-up-arrow.svg";
 import "../static/css/FeedDetails.css";
 import FeedOrderDetailsPopup from "../components/FeedOrderDetailsPopup.jsx";
 import { useGlobalContext } from "../Context";
+import { FaArrowLeft } from 'react-icons/fa';
 
-const FeedDetails = ({ handleBack }) => {
+const FeedDetails = ({ handleBack }) => { // Correctly use handleBack prop
   const { currentFeedPeriodData, previousFeedPeriodData } = useGlobalContext();
   const [currentPeriod, setCurrentPeriod] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,6 +38,11 @@ const FeedDetails = ({ handleBack }) => {
 
   return (
     <div className="farmer-list">
+      {/* Back Button */}
+      <button className="back-button" onClick={handleBack} aria-label="Go back">
+        <FaArrowLeft size={24} /> {/* Adjust size as needed */}
+      </button>
+      
       <div className="navigation">
         <div className="period-button-container">
           <button
@@ -53,6 +59,7 @@ const FeedDetails = ({ handleBack }) => {
           </button>
         </div>
       </div>
+
       <div className="cards">
         {currentItems.map((farmer, index) => (
           <div key={index} className="card">
@@ -89,6 +96,7 @@ const FeedDetails = ({ handleBack }) => {
           </div>
         ))}
       </div>
+
       <div className="pagination">
         <button
           onClick={() => handlePageChange(1)}
@@ -124,6 +132,7 @@ const FeedDetails = ({ handleBack }) => {
           {">>"}
         </button>
       </div>
+
       {selectedFarmerId && (
         <FeedOrderDetailsPopup
           farmerId={selectedFarmerId}

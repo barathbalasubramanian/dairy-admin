@@ -8,9 +8,9 @@
   flex-direction: column;
   background-color: #4695b8;
   padding-top: 10px;
-  border-radius: 8px;
+  border-radius: 0px;
   width: 295px;
-  margin-bottom: 15px;
+  margin-bottom: px;
 }
 
 .nav-body {
@@ -207,4 +207,37 @@ ul.dropdown-menu  {
   margin: 0;
   display: flex;
   align-items: center;
+}
+/* nav.css */
+.dropdown-container {
+
+  
+  background-color: #176384;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 0.5rem;
+}
+
+.dropdown-toggle {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-menu {
+  padding: 0;
+  /* Remove default padding */
+  margin: 0;
+  /* Remove default margin */
+  list-style-type: none;
+  /* Remove bullet points */
+}
+
+.active-dropdown-item {
+  /* background-color: #f0f0f0; */
+  /* Background color for active item */
+  font-weight: bold;
+  /* Bold text for active item */
 }
