@@ -7,6 +7,7 @@ import InsurancePreviousRequest from "../components/InsurancePreviousRequest.jsx
 import "../static/css/FinanceRequirementPage.css";
 import { useGlobalContext } from "../Context";
 import useAuth from "./UseAuth.jsx";
+import axios from "axios";
 
 const FinanceRequirementPage = () => {
   const { CurrCost, connect, cancelLoan, finalLoan } = useGlobalContext();
@@ -24,8 +25,31 @@ const FinanceRequirementPage = () => {
     setActiveTab(tabName);
   };
 
-  const loanDataToDisplay = CurrCost.loan;
-  const insuranceDataToDisplay = CurrCost.insurance;
+  // const loanDataToDisplay = CurrCost.loan;
+  // const insuranceDataToDisplay = CurrCost.insurance;
+
+  let loanDataToDisplay, insuranceDataToDisplay;
+
+  if (CurrCost) {
+    loanDataToDisplay = CurrCost.loan;
+    console.log(loanDataToDisplay,"1")
+    insuranceDataToDisplay = CurrCost.insurance;
+  } else {
+    const currCost = async () => {
+      try {
+        const baseURL = "https://test.quindltechnologies.com/";
+        const res = await axios.get(baseURL + `admin/cost-ticket/1`);
+        console.log(res.data)
+        loanDataToDisplay = res.data.loan;
+        console.log(loanDataToDisplay,"2")
+        insuranceDataToDisplay = res.data.insurance;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    currCost();
+  }
+
 
   const handleViewPreviousRequest = () => {
     setIsViewingPreviousRequest(true);
@@ -77,6 +101,10 @@ const FinanceRequirementPage = () => {
   };
 
   const renderData = (data) => {
+    if (!data || !Array.isArray(data)) {
+      return <p>No data available</p>; 
+    }
+  
     return data.map((item, index) => (
       <div key={index} className="finance-data-card">
         <div className="finance-data-details">
@@ -134,6 +162,7 @@ const FinanceRequirementPage = () => {
       </div>
     ));
   };
+  
 
   useAuth(() => setIsAuthChecked(true));
   if (!isAuthChecked) {
