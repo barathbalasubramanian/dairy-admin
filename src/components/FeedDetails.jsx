@@ -27,21 +27,33 @@ const FeedDetails = ({ handleBack }) => {
   };
 
   return (
-    <div className="farmer-list">
-      <button className="back-button" onClick={handleBack} aria-label="Go back">
-        <FaArrowLeft size={24} />
+    <div className=" p-6">
+      <button
+        onClick={handleBack}
+        aria-label="Go back"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-[0px_5px_15px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-x-1 mb-6"
+      >
+        <FaArrowLeft size={24} className="text-gray-700" />
       </button>
 
-      <div className="navigation">
-        <div className="period-button-container">
+      <div className="mb-8">
+        <div className="flex justify-center gap-12">
           <button
-            className={`period-button ${currentPeriod ? "active" : ""}`}
+            className={`px-6 py-2  transition-all duration-300 ${
+              currentPeriod
+                ? "bg-[#06ad9d]  rounded-lg  text-white"
+                : "bg-white text hover:bg-gray-100"
+            }`}
             onClick={() => handlePeriodChange(true)}
           >
             Current Period
           </button>
           <button
-            className={`period-button ${!currentPeriod ? "active" : ""}`}
+            className={`px-6 py-2 rounded-lg transition-all duration-300 ${
+              !currentPeriod
+                ? "bg-[#06ad9d] text-white"
+                : "bg-white text-gray-600 hover:bg-gray-100"
+            }`}
             onClick={() => handlePeriodChange(false)}
           >
             Previous Period
@@ -49,42 +61,63 @@ const FeedDetails = ({ handleBack }) => {
         </div>
       </div>
 
-      <div className="cards">
-        {farmersData.map((farmer, index) => (
-          <div key={index} className="card">
-            <div className="card-content">
-              <p>
-                <span className="label">Farmer ID</span>
-                <span className="colon">:</span> {farmer.Former_id}
-              </p>
-              <p>
-                <span className="label">Name</span>
-                <span className="colon">:</span> {farmer.formerName}
-              </p>
-              <p>
-                <span className="label">VLCC</span>
-                <span className="colon">:</span> {farmer.vlccName}
-              </p>
-              <p>
-                <span className="label">Cluster</span>
-                <span className="colon">:</span> {farmer.clusterName}
-              </p>
-              <p>
-                <span className="label">Phone</span>
-                <span className="colon">:</span> {farmer.phno}
-              </p>
+      {farmersData && farmersData.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-64 flex justify-center">
+          {farmersData.map((farmer, index) => (
+            <div
+              key={index}
+              className="w-[305px] bg-white rounded-lg shadow-[0px_5px_15px_rgba(0,0,0,0.35)] p-6"
+            >
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <span className="text-gray-600 min-w-[80px]">Farmer ID</span>
+                  <span className="mx-2">:</span>
+                  <span className="text-gray-900">{farmer.Former_id}</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-gray-600 min-w-[80px]">Name</span>
+                  <span className="mx-2">:</span>
+                  <span className="text-gray-900">{farmer.formerName}</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-gray-600 min-w-[80px]">VLCC</span>
+                  <span className="mx-2">:</span>
+                  <span className="text-gray-900">{farmer.vlccName}</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-gray-600 min-w-[80px]">Cluster</span>
+                  <span className="mx-2">:</span>
+                  <span className="text-gray-900">{farmer.clusterName}</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-gray-600 min-w-[80px]">Phone</span>
+                  <span className="mx-2">:</span>
+                  <span className="text-gray-900">{farmer.phno}</span>
+                </div>
+              </div>
+              <div className="mt-6">
+                <button
+                  className="w-full flex items-center justify-center gap-2 bg-[#06ad9d] text-white px-4 py-2 rounded-md  transition-colors"
+                  onClick={() => handleViewMore(farmer.Former_id)}
+                >
+                  View More
+                  <img src={down_up_arrow} alt="" className="w-5 h-5 " />
+                </button>
+              </div>
             </div>
-            <div>
-              <button
-                className="feed-view-more-button"
-                onClick={() => handleViewMore(farmer.Former_id)}
-              >
-                View More <img src={down_up_arrow} alt="" />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center min-h-[400px]">
+          <div className="text-4xl text-gray-400 mb-4">📊</div>
+          <h3 className="text-xl font-semibold text-gray-600 mb-2">No Data Found</h3>
+          <p className="text-gray-500">
+            {currentPeriod
+              ? "No farmers data available for the current period"
+              : "No farmers data available for the previous period"}
+          </p>
+        </div>
+      )}
 
       {selectedFarmerId && (
         <FeedOrderDetailsPopup

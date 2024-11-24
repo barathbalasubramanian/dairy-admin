@@ -137,13 +137,12 @@ const ClusterPage = () => {
   };
 
   const renderCard = (data, index) => (
-    <div key={index} className="farmer-card-1">
+    <div key={index} className="farmer-card-1 w-[295px]">
       <div className="farmer-card-header">
-        <div className="farmer-card-id">{data.clusterId}</div>
-        <div className="farmer-card-name">{data.clusterName}</div>
+        <div className="farmer-card-id">{data.clusterId}. <span className="farmer-card-name">{data.clusterName}</span></div>
       </div>
       <div className="farmer-card-body">
-        <div className="farmer-card-add-detail">
+        <div className="farmer-card-add-detail mb-1">
           <p>CP Name</p>
           <span>:</span>
           {data.clusterPersonName}
@@ -209,7 +208,7 @@ const ClusterPage = () => {
             </div>
           )}
         </div>
-        <div className="farmer-card-container">{cluster.map(renderCard)}</div>
+        <div className="farmer-card-container flex justify-center">{cluster.map(renderCard)}</div>
       </>
       <IndividualDetailsPopup
         isOpen={isIndividualDetailsPopupOpen}

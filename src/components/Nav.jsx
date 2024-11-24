@@ -112,15 +112,13 @@ const Nav = () => {
             <ul>
               <li ref={dataManagementRef}>
                 <div
+                  onClick={() => navigate("/DataManagement")}
                   className={
-                    isActive("/") || isDataManagementActive()
-                      ? "nav-ite active"
-                      : "nav-ite"
+                    isActive("/DataManagement") ? "nav-ite active" : "nav-ite"
                   }
-                  onClick={handleDataManagementToggle}
                 >
-                  <img alt="Data Management" src={datamanagement} />
-                  <p>Data Management </p>
+                  <img alt="Feed Order" src={feed} />
+                  <p>DataManagement</p>
                 </div>
                 {dataManagementOpen && (
                   <div className="dropdown-container">

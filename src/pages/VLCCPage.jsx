@@ -125,46 +125,73 @@ const VLCCPage = () => {
     setIsIndividualEditPopupOpen(false);
   };
 
-  const renderCard = (data, index) => (
-    <div key={index} className="farmer-card-1">
-      <div className="farmer-card-header">
-        <div className="farmer-card-id">{data.VLCC_id}</div>
-        <div className="farmer-card-name">{data.VLCC_name}</div>
-      </div>
-      <div className="farmer-card-body">
-        <div className="farmer-card-add-detail">
-          <p>VSP Name</p>
-          <span>:</span>
-          {data.VLCC_personname}
-        </div>
-        <div className="farmer-card-detail">
-          <img src={mail} alt="" />
-          <span>: </span>
-          {data.VLCC_email}
-        </div>
-        <div className="farmer-card-detail">
-          <img src={phone} alt="" />
-          <span>: </span>
-          {data.VLCC_phno}
-        </div>
-      </div>
-      <div className="farmer-card-subhead">
-        <div className="farmer-card-subhead-detail" style={{ width: "50%" }}>
-          <span>farmers</span>
-          {data.total_farmers}
-        </div>
-      </div>
-      <div className="farmer-card-footer">
-        <button
-          className="connect-button"
-          onClick={() => handleViewMoreClick(data)}
-        >
-          Edit
-          <img src={edit_img} alt="" />
-        </button>
+const renderCard = (data, index) => (
+  <div
+    key={index}
+    className="farmer-card-1"
+    style={{
+      width: "25%",
+      margin: "10px", // Adds small spacing between cards
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      // alignItems: "center",
+    }}
+  >
+    <div className="farmer-card-header mb-2">
+      <div className="farmer-card-id">
+        {data.VLCC_id}. <span className="farmer-card-name text-black">{data.VLCC_name}</span>
       </div>
     </div>
-  );
+    <div className="farmer-card-body">
+      <div className="farmer-card-add-detail mb-2">
+        <p>VSP Name</p>
+        <span>:</span>
+        {data.VLCC_personname}
+      </div>
+      <div className="farmer-card-detail">
+        <img src={mail} alt="email icon" style={{ width: "25px", height: "25px", marginRight: "5px" }} />
+        {data.VLCC_email}
+      </div>
+      <div className="farmer-card-detail">
+        <img src={phone} alt="phone icon" style={{ width: "25px", height: "25px", marginRight: "5px" }} />
+        {data.VLCC_phno}
+      </div>
+    </div>
+    <div className="farmer-card-subhead mt-2">
+      <div className="farmer-card-subhead-detail" style={{ width: "70%" }}>
+        <span>farmers</span>
+        {data.total_farmers}
+      </div>
+    </div>
+    <div className="farmer-card-footer mt-4">
+      <button
+        className="connect-button"
+        onClick={() => handleViewMoreClick(data)}
+      >
+        Edit
+        <img src={edit_img} alt="edit icon" style={{ width: "24px", height: "24px", marginLeft: "5px" }} />
+      </button>
+    </div>
+  </div>
+);
+
+const CardContainer = ({ dataList }) => (
+  <div
+    className="card-container flex flex-wrap justify-between"
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-between", // Space between the cards
+      alignItems: "flex-start",
+      gap: "10px", // Optional: Add gap if `justify-between` is insufficient
+    }}
+  >
+    {dataList.map((data, index) => renderCard(data, index))}
+  </div>
+);
+
+
 
   useAuth(() => setIsAuthChecked(true));
   if (!isAuthChecked) {
@@ -172,7 +199,7 @@ const VLCCPage = () => {
   }
 
   return (
-    <div className="farmer-availability-page">
+    <div className="farmer-availability-page ">
       <>
         <div className="farmer-add-button">
           <button onClick={handleAddButtonClick}>
@@ -190,7 +217,7 @@ const VLCCPage = () => {
             </div>
           )}
         </div>
-        <div className="farmer-card-container">{Vlcc.map(renderCard)}</div>
+        <div className="farmer-card-container flex justify-center">{Vlcc.map(renderCard)}</div>
       </>
       <IndividualDetailsPopup
         isOpen={isIndividualDetailsPopupOpen}

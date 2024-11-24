@@ -19,6 +19,7 @@ import SpAvailabilityPage from "./pages/SpAvailabilityPage.jsx";
 import useAuth from "./pages/UseAuth.jsx";
 import { useGlobalContext } from "./Context";
 import "./App.css";
+import DataManagement from './pages/DataManagementPage.jsx'
 
 function App() {
   const location = useLocation();
@@ -47,7 +48,7 @@ function App() {
               <Search />
             </div>
             <div className="main-contents">
-              <Routes>
+              <Routes> <Route path="/DataManagement" element={<DataManagement />} />
                 <Route path="/FarmerPage" element={<FarmerPage />} />
                 <Route path="/VLCCPage" element={<VLCCPage />} />
                 <Route path="/BMCPage" element={<BMCPage />} />

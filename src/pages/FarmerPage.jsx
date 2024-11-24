@@ -7,6 +7,7 @@ import IndividualDetailsPopup from "../components/AddIndividualFarmerPopup.jsx";
 import "../static/css/FarmerPage.css";
 import { useGlobalContext } from "../Context";
 import useAuth from "./UseAuth.jsx";
+import { Phone, MapPin } from "react-feather"; 
 
 const FarmerPage = () => {
   const { Farmer, addfarmer } = useGlobalContext();
@@ -55,10 +56,10 @@ const FarmerPage = () => {
   };
 
   const renderCard = (data) => (
-    <div key={data.Former_id} className="farmer-card">
+    <div key={data.Former_id} className="farmer-card w-3/12">
       <div className="farmer-card-header">
-        <div className="farmer-card-id">{data.Former_id}</div>
-        <div className="farmer-card-name">{data.Name}</div>
+        <div className="farmer-card-id">{data.Former_id}. <span className="farmer-card-name">{data.Name}</span></div>
+        
       </div>
       <div className="farmer-card-subhead">
         <div className="farmer-card-subhead-detail">
@@ -71,17 +72,15 @@ const FarmerPage = () => {
         </div>
       </div>
       <div className="farmer-card-body">
-        <div className="farmer-card-detail">
-          <img src={phone} alt="Phone" />
-          <span>: </span>
-          {data.phno || "N/A"}
-        </div>
-        <div className="farmer-card-add-detail">
-          <p>Address</p>
-          <span>:</span>
-          {data.Address?.Address_line1 || "N/A"}
-        </div>
+      <div className="farmer-card-detail">
+        <Phone size={16} /> {/* Icon for Phone */}
+        <span className="ml-2">{data.phno || "N/A"}</span>
       </div>
+      <div className="farmer-card-detail">
+        <MapPin size={16} />
+        <span className="ml-2">{data.Address?.Address_line1 || "N/A"}</span>
+      </div>
+    </div>
       <div className="farmer-card-footer">
         <button
           className="connect-button"
@@ -126,7 +125,7 @@ const FarmerPage = () => {
               </div>
             )}
           </div>
-          <div className="farmer-card-container">
+          <div className="farmer-card-container flex justify-center">
             {Farmer && Farmer.map(renderCard)}
           </div>
         </>

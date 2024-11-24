@@ -125,25 +125,22 @@ const VLCCPage = () => {
   };
 
   const renderCard = (data, index) => (
-    <div key={index} className="farmer-card-1">
+    <div key={index} className="farmer-card-1 w-[295px]">
       <div className="farmer-card-header">
-        <div className="farmer-card-id">{data.bmcId}</div>
-        <div className="farmer-card-name">{data.bmcName}</div>
+        <div className="farmer-card-id">{data.bmcId}. <span className="farmer-card-name text-black">{data.bmcName}</span></div>
       </div>
       <div className="farmer-card-body">
-        <div className="farmer-card-add-detail">
+        <div className="farmer-card-add-detail mb-1">
           <p>RDO Name</p>
           <span>:</span>
           {data.bmcPersonName}
         </div>
         <div className="farmer-card-detail">
           <img src={mail} alt="" />
-          <span>: </span>
           {data.bmcEmail}
         </div>
         <div className="farmer-card-detail">
           <img src={phone} alt="" />
-          <span>: </span>
           {data.bmcPhone}
         </div>
       </div>
@@ -175,7 +172,7 @@ const VLCCPage = () => {
   }
 
   return (
-    <div className="farmer-availability-page">
+    <div className="farmer-availability-page ">
       <>
         <div className="farmer-add-button">
           <button onClick={handleAddButtonClick}>
@@ -193,7 +190,7 @@ const VLCCPage = () => {
             </div>
           )}
         </div>
-        <div className="farmer-card-container">{bmc.map(renderCard)}</div>
+        <div className="farmer-card-container flex justify-center">{bmc.map(renderCard)}</div>
       </>
       <IndividualDetailsPopup
         isOpen={isIndividualDetailsPopupOpen}

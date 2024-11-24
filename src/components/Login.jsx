@@ -13,9 +13,7 @@ const Login = () => {
   const handlelogin = async () => {
     await Login(name,password);
   };
-  const handleRegister = () => {
-    navigate("/register");
-  };
+
 
   return (
     <>
@@ -55,13 +53,13 @@ const Login = () => {
             </div>
           </div>
           <div className="demo-content">
-            <h1>Welcome Page</h1>
-            <p>Login to Continue access</p>
+            <h1 className="text-4xl mb-2">Welcome Page</h1>
+            <p className="text-2xl">Login to Continue access</p>
           </div>
         </div>
         <div className="login-box">
           <div className="login-head">
-            <h2>Login</h2>
+            <h2 className="text-4xl">Login</h2>
           </div>
           <div className="login-form">
             <form>
@@ -89,9 +87,6 @@ const Login = () => {
             {/* <Link to="/ticketDetails"> */}
             <button className="login-but" onClick={handlelogin}>
               LOGIN
-            </button>
-            <button className="login-but" onClick={handleRegister}>
-              Register
             </button>
             {/* </Link> */}
           </div>

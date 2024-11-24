@@ -113,30 +113,25 @@ const VLCCPage = () => {
   };
 
   const renderCard = (data, index) => (
-    <div key={index} className="farmer-card-1">
+    <div key={index} className="farmer-card-1 w-3/12 p-4">
       <div className="farmer-card-header">
-        <div className="farmer-card-id">{data.Staff_id}</div>
-        <div className="farmer-card-name">{data.User_Name}</div>
+        <div className="farmer-card-id">{data.Staff_id}. <span className="farmer-card-name">{data.User_Name}</span></div>
       </div>
       <div className="farmer-card-subhead">
         <div className="farmer-card-subhead-detail">
           <span>Created</span>
           {data.Email}
         </div>
-        <div className="farmer-card-subhead-detail">
-          <span>Last Login</span>
-          {data.Lastlogin}
-        </div>
+        
       </div>
       <div className="farmer-card-body">
         <div className="farmer-card-detail">
-          <img src={mail} alt="" />
-          <span>: </span>
+          <img src={mail} alt=""  />
           {data.Email}
         </div>
         <div className="farmer-card-detail">
           <img src={phone} alt="" />
-          <span>: </span>
+         
           {data.Phno}
         </div>
       </div>
@@ -176,7 +171,7 @@ const VLCCPage = () => {
             </div>
           )}
         </div>
-        <div className="farmer-card-container">{staff.map(renderCard)}</div>
+        <div className="farmer-card-container flex justify-center ">{staff.map(renderCard)}</div>
       </>
       <IndividualDetailsPopup
         isOpen={isIndividualDetailsPopupOpen}

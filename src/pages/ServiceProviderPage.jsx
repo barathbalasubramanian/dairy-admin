@@ -8,6 +8,8 @@ import IndividualDetailsPopup from "../components/AddSpPopup.jsx";
 import "../static/css/FarmerPage.css";
 import { useGlobalContext } from "../Context";
 import useAuth from "./UseAuth.jsx";
+import { MapPin,ArrowRight  } from "react-feather"; 
+
 
 const ServiceProviderPage = () => {
   const { alldoc = [] } = useGlobalContext();
@@ -65,47 +67,62 @@ const ServiceProviderPage = () => {
     setSelectedFarmer(updatedFarmer); // Update selected farmer with the latest details
   };
 
-  const renderCard = (data, index) => (
-    <div key={index} className="farmer-card">
-      <div className="farmer-card-header">
-        <div className="farmer-card-id">{data.doctorId}</div>
-        <div className="farmer-card-name">{data.doctorName}</div>
-      </div>
-      <div className="farmer-card-subhead">
-        <div className="farmer-card-subhead-detail">
-          <span>Cluster:</span> {data.clusterName}
-        </div>
-        <div className="farmer-card-subhead-detail">
-          <span>Specialist:</span> {data.doctorType}
-        </div>
-      </div>
-      <div className="farmer-card-body">
-        <div className="farmer-card-detail">
-          <img src={mail} alt="Email" />
-          <span>: </span>
-          {data.email}
-        </div>
-        <div className="farmer-card-detail">
-          <img src={phone} alt="Phone" />
-          <span>: </span>
-          {data.phone}
-        </div>
-        <div className="farmer-card-add-detail">
-          <p>Address:</p>
-          <span>{data.address}</span>
-        </div>
-      </div>
-      <div className="farmer-card-footer">
-        <button
-          className="connect-button"
-          onClick={() => handleViewMoreClick(data)}
-        >
-          View More
-          <img src={arrow} alt="View More" />
-        </button>
+const renderCard = (data, index) => (
+  <div
+    key={index}
+    className="farmer-card flex flex-col justify-between items-start bg-white shadow-lg rounded-lg  space-y-1 w-[295px] "
+    style={{
+      boxShadow: "0px 6px 20px rgba(0, 0, 0, 0.25)", // Increased shadow intensity
+    }}
+  >
+    {/* Header */}
+    <div className="farmer-card-header text-start w-full">
+      <div className="farmer-card-id text-lg font-semibold text-gray-800">
+        {data.doctorId}.{" "}
+        <span className="farmer-card-name">{data.doctorName}</span>
       </div>
     </div>
-  );
+
+    {/* Subhead */}
+    <div className="farmer-card-subhead flex  text-3sm text-gray-700">
+      <div className="farmer-card-subhead-detail">
+        <span className="font-medium">Cluster:</span> {data.clusterName}
+      </div>
+      <div className="farmer-card-subhead-detail">
+        <span className="font-medium">Specialist:</span> {data.doctorType}
+      </div>
+    </div>
+
+    {/* Body */}
+    <div className="farmer-card-body w-full  ">
+      <div className="farmer-card-detail flex items-center text-gray-600 text-3sm ">
+        <img src={mail} alt="Email" className="w-5 h-5 mr-2" />
+        {data.email}
+      </div>
+      <div className="farmer-card-detail flex items-center text-gray-600 text-3sm">
+        <img src={phone} alt="Phone" className="w-5 h-5 mr-2" />
+        {data.phone}
+      </div>
+      <div className="farmer-card-add-detail flex items-center text-gray-700 text-3sm">
+        <MapPin size={16} />
+        <span className="ml-3">{data.address}</span>
+      </div>
+    </div>
+
+    {/* Footer */}
+    <div className="farmer-card-footer w-full flex justify-end ">
+      <button
+        className="connect-button flex items-center bg-[#06ad9d] text-white px-3 py-2 rounded-md hover:bg-[#058d84] transition"
+        onClick={() => handleViewMoreClick(data)}
+      >
+        View More
+        <ArrowRight className="w-5 h-5 ml-2" />
+      </button>
+    </div>
+  </div>
+);
+
+
 
   if (!isAuthChecked) {
     return <div>Loading...</div>; // Show loading state until auth is checked
@@ -137,7 +154,7 @@ const ServiceProviderPage = () => {
               </div>
             )}
           </div>
-          <div className="farmer-card-container">{alldoc.map(renderCard)}</div>
+          <div className="farmer-card-container flex justify-center">{alldoc.map(renderCard)}</div>
         </>
       )}
       <IndividualDetailsPopup

@@ -2,7 +2,7 @@
 .login-container {
   display: flex;
   font-family: "Poppins", sans-serif;
-  height: 97.7vh;
+  height: 100vh;
 }
 
 .welcome-page {
@@ -23,7 +23,7 @@
   height: 100%;
   object-fit: fill;
   z-index: -1;
-  border-radius: 10px;
+  border-radius: 2px;
 }
 
 .header {

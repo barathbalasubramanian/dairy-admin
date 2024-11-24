@@ -28,7 +28,7 @@ const FeedOrder = () => {
 
   return (
     <div className="feeds">
-      <div className="feed-item">
+      <div className="feed-item ">
         <div className="feed-title">Farmer</div>
         <div className="feed-value">{feedOrderData.totalFarmers}</div>
       </div>

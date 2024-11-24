@@ -6,6 +6,7 @@ import { useGlobalContext } from "../Context";
 import { CSVLink } from "react-csv";
 import axios from "axios";
 import useAuth from "./UseAuth.jsx";
+import { ArrowRight, Download } from 'lucide-react';
 
 const FeedPage = () => {
   const { feedOrderdata } = useGlobalContext();
@@ -82,7 +83,7 @@ const FeedPage = () => {
           <FeedOrder />
           <div className="button-container">
             <button className="view-order-button" onClick={handleViewOrder}>
-              View Order <span className="arrow"> › </span>
+              View Order  <ArrowRight className="w-6 h-6 ml-4" />
             </button>
             <CSVLink
               data={csvData}
