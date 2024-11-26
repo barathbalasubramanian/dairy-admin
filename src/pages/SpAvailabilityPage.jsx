@@ -69,11 +69,10 @@ const SpAvailabilityPage = () => {
   };
 
   const renderCard = (data, isAvailable) => (
-    <div key={data.Doctor_id} className="sp-card">
+    <div key={data.Doctor_id} className="sp-card ">
       <div className="sp-card-header">
         <div className="sp-card-idname">
-          <div className="sp-card-id">{data.Doctor_id}</div>
-          <div className="sp-card-name">{data.Name}</div>
+          <div className="sp-card-id">{data.Doctor_id}. {data.Name}</div>
         </div>
         <div
           className={`sp-status ${isAvailable ? "available" : "unavailable"}`}
@@ -127,74 +126,80 @@ const SpAvailabilityPage = () => {
 
   return (
     <div className="sp-availability-page">
-      <div className="sp-box">
-        <div className="flex w-10/12 items-center justify-center m-auto">
-          <div className="sp-inputgroup flex-1 ">
-            <button
-              onClick={() => setTab("Available")}
-              className={`py-2 px-2 rounded-lg transition-colors duration-200 w-10/12
-              ${
-                tab === "Available"
-                  ? "bg-green-500 text-white"
-                  : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-              }`}
-            >
-              Available
-            </button>
-          </div>
-          <div className="sp-inputgroup flex-1">
-            <button
-              onClick={() => setTab("Unavailable")}
-              className={`py-2 px-4 rounded-lg transition-colors duration-200 w-10/12
-              ${
-                tab === "Unavailable"
-                  ? "bg-red-500 text-white"
-                  : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-              }`}
-            >
-              Unavailable
-            </button>
-          </div>
-        </div>
+  <div className="sp-box">
+    <div className="flex w-[77%] items-center justify-center m-auto space-x-8">
+      <div className="sp-inputgroup flex-1">
+        <button
+          onClick={() => setTab("Available")}
+          className={`py-3 px-4 rounded-lg transition-colors duration-200 w-10/12
+            ${
+              tab === "Available"
+                ? "bg-green-500 text-white"
+                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+            }`}
+        >
+          Available
+        </button>
       </div>
+      <div className="sp-inputgroup flex-1">
+        <button
+          onClick={() => setTab("Unavailable")}
+          className={`py-3 px-4 rounded-lg transition-colors duration-200 w-10/12
+            ${
+              tab === "Unavailable"
+                ? "bg-red-500 text-white"
+                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+            }`}
+        >
+          Unavailable
+        </button>
+      </div>
+    </div>
+  </div>
 
       {/* Filter Options */}
-      <div className="flex flex-col py-4 px-8 w-[60%]">
-        <div className="font-medium text-lg py-2">Filter :</div>
-        <div className="w-full flex justify-center gap-4 items-center p-4 bg-gray-100 rounded-lg shadow-lg transition-all duration-300">
-          <select
-            value={typeFilter}
-            onChange={(e) => setTypeFilter(e.target.value)}
-            className="p-2 flex-1 border border-gray-300 rounded-md bg-white text-sm focus:outline-none"
-          >
-            <option value="">All Types</option>
-            <option value="VETER">Veterinary</option>
-            <option value="AI">AI</option>
-            <option value="Feed">Feed</option>
-            <option value="Insurance">Insurance</option>
-            <option value="Loan">Loan</option>
-          </select>
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="p-2 flex-1 border border-gray-300 rounded-md bg-white text-sm focus:outline-none"
-          >
-            <option value="">All Clusters</option>
-            <option value="cluster1">Cluster 1</option>
-            <option value="cluster2">Cluster 2</option>
-            <option value="cluster3">Cluster 3</option>
-          </select>
-          {/* Clear Filters Button */}
-          <button
-            onClick={clearFilters}
-            className="bg-red-500 text-white px-4 py-2 rounded-md transition-colors duration-200"
-          >
-            Clear Filters
-          </button>
-        </div>
-      </div>
+     <div className="flex flex-col items-center justify-center py-8">
+  <div className="w-[77%] flex justify-center gap-4 items-center p-4 bg-gray-100 rounded-lg shadow-lg transition-all duration-300">
+    {/* Dropdown 1 */}
+    <select
+      value={typeFilter}
+      onChange={(e) => setTypeFilter(e.target.value)}
+      className="py-2 px-4 flex-1 border border-gray-300 rounded-md bg-white text-sm focus:outline-none"
+    >
+      <option value="">All Types</option>
+      <option value="VETER">Veterinary</option>
+      <option value="AI">AI</option>
+      <option value="Feed">Feed</option>
+      <option value="Insurance">Insurance</option>
+      <option value="Loan">Loan</option>
+    </select>
 
-      <div className="sp-card-container">
+    {/* Dropdown 2 */}
+    <select
+      value={statusFilter}
+      onChange={(e) => setStatusFilter(e.target.value)}
+      className="py-2 px-4 flex-1 border border-gray-300 rounded-md bg-white text-sm focus:outline-none"
+    >
+      <option value="">All Clusters</option>
+      <option value="cluster1">Cluster 1</option>
+      <option value="cluster2">Cluster 2</option>
+      <option value="cluster3">Cluster 3</option>
+    </select>
+
+    {/* Clear Filters Button */}
+    <button
+      onClick={clearFilters}
+      className="py-3 px-10 flex-shrink-0 bg-red-500 text-white rounded-md transition-colors duration-200 text-sm focus:outline-none"
+    >
+      Clear
+    </button>
+  </div>
+</div>
+
+
+
+
+      <div className="sp-card-container flex justify-center">
         {tab === "Available" &&
           filterItems(availableItems).map((data) => renderCard(data, true))}
         {tab === "Unavailable" &&

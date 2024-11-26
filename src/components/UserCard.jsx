@@ -7,16 +7,16 @@ const UserCard = ({ user, onViewMore }) => {
     <div className="user-card ">
       <div className="user-info p-8">
         <div className="user-contents ">
-          <p className="user-text m-2">Name</p> <p className="colon">:</p> <p className="user-values">{user.name}</p>
+          <p className="user-text m-2">Name</p> <p className="colon">:</p> <p className="user-values font-bold ">{user.name}</p>
         </div>
         <div className="user-contents">
           <p className="user-text m-2">User ID</p><p className="colon">:</p>
-          <p className="user-values">{user.adminId}</p>
+          <p className="user-values font-bold">{user.adminId}</p>
         </div>
         <div className="user-contents m-2">
-          <p className="user-text">Status</p> <p className="colon">:</p>
-          <p className="user-values">
-            {user.user == 0 ? <>Un-Active <img src={unactive_img} alt="" /></> : <>Active <img src={active_img} alt="" /></>}
+          <p className="user-text">Status</p><p className="colon"> :</p>
+          <p className="user-values font-bold">
+            {user.user == 0 ? <>Un-Active <img src={unactive_img} alt="" /></>  : <>Active <img src={active_img} alt="" /></>}
           </p>
         </div>
       </div>

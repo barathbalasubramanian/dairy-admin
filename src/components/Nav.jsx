@@ -117,7 +117,7 @@ const Nav = () => {
                     isActive("/DataManagement") ? "nav-ite active" : "nav-ite"
                   }
                 >
-                  <img alt="Feed Order" src={feed} />
+                  <img alt="Feed Order" src={datamanagement} />
                   <p>DataManagement</p>
                 </div>
                 {dataManagementOpen && (

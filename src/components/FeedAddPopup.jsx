@@ -32,7 +32,7 @@ const AddPopup = ({ isOpen, onClose, onAddCard, tab }) => {
   if (!isOpen && !isClosing) return null;
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay flex justify-center">
       <div className={`modal-content ${isClosing ? "slide-out" : ""}`}>
         <button className="close-button" onClick={handleClose}>
           <img src={close_button} alt="Close" />
@@ -40,8 +40,8 @@ const AddPopup = ({ isOpen, onClose, onAddCard, tab }) => {
         <form onSubmit={handleAddClick}>
           <div className="contents">
             <label>{tab === "Feed" ? "Feed Type" : "Supplementary Type"}</label>
-            <span>:</span>
-            <input
+        
+            <input className=""
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -49,10 +49,9 @@ const AddPopup = ({ isOpen, onClose, onAddCard, tab }) => {
               required
             />
           </div>
-          <div className="contents">
+          <div className="contents mt-4">
             <label>Manufacturer Name</label>
-            <span>:</span>
-            <input
+            <input className="mt-4"
               type="text"
               value={Manufacturer}
               onChange={(e) => setManufacturer(e.target.value)}
@@ -60,12 +59,11 @@ const AddPopup = ({ isOpen, onClose, onAddCard, tab }) => {
               required
             />
           </div>
-          <div className="contents">
+          <div className="contents mt-2">
             <label>Price</label>
-            <span>:</span>
-            <div className="price-input">
+            <div className="price-input ">
               <span className="currency-prefix">Rs.</span>
-              <input
+              <input className=""
                 type="text"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}

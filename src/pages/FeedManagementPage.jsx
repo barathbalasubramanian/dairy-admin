@@ -102,7 +102,7 @@ const FeedManagementPage = () => {
         onEditCard={handleEditCard}
         cardData={editingCard}
       />
-      <div className="feeds-card flex justify-center">
+      <div className="feeds-card ">
         {(activeTab === "Feed" ? feedCardsData : supplementaryCardsData).map(
           (card) => (
             <FeedManagement

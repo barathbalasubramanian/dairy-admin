@@ -56,7 +56,7 @@ const AllTickets = ({ handleBack }) => {
           <span>Back</span>
         </button>
       </div>
-      <div className="progress-bar-container w-full p-4">
+      <div className="progress-bar-container w-full ">
         <div className="progress-bar grid grid-cols-3 gap-4 w-full">
           {steps.map((label, index) => (
             <button
@@ -83,14 +83,14 @@ const AllTickets = ({ handleBack }) => {
 
       {/* Filter Section */}
       <div className="flex flex-col mb-8">
-        <div className="font-medium text-lg mb-2">Filter :</div>
-        <div className="w-full grid grid-cols-4 gap-4 p-4 bg-gray-100 rounded-lg shadow-md">
+        <div className="w-full grid grid-cols-4 gap-2 p-4 bg-gray-100 rounded-lg shadow-md">
           <input
             type="month"
             value={selectedDate}
             onChange={(e) => setSelectedDate(e.target.value)}
             className="p-2 border border-gray-300 rounded-md w-full"
           />
+
           <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}

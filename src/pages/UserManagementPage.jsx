@@ -74,7 +74,7 @@ const UserManagementPage = () => {
       <div className="user-cards">
         {admin.map((user, index) => (
           <UserCard
-            key={user.id || index} // Use index as fallback if id is not available
+            key={user.id || index} 
             user={user}
             onViewMore={handleViewMore}
           />

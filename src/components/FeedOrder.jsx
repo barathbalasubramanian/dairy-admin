@@ -33,7 +33,7 @@ const FeedOrder = () => {
         <div className="feed-value">{feedOrderData.totalFarmers}</div>
       </div>
       {feedOrderData.feeds.map((item, index) => (
-        <div key={index} className="feed-item">
+        <div key={index} className="feed-item  text-center">
           <div className="feed-title">{item.Name}</div>
           <div className="feed-value">{item.totalQty}</div>
         </div>

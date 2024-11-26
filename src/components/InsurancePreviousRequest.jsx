@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import FinanceConnectPopup from "../components/FinanceConnectPopup.jsx";
 import "../static/css/FinancePreviousRequest.css";
 import { useGlobalContext } from "../Context";
+import { ArrowLeft } from "react-feather";
 
-const InsurancePreviousRequest = () => {
+const InsurancePreviousRequest = ({handleBack}) => {
   const { prein, connect } = useGlobalContext();
   const [activeTab, setActiveTab] = useState("Processed");
   const [isConnectPopupOpen, setIsConnectPopupOpen] = useState(false);
@@ -12,6 +13,7 @@ const InsurancePreviousRequest = () => {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+ 
 
   const getCurrentPageData = () => {
     if (prein === undefined) {
@@ -85,6 +87,13 @@ const InsurancePreviousRequest = () => {
   };
 
   return (
+    <div> <button
+          onClick={handleBack}
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
+        >
+          <ArrowLeft />
+          <span>Back</span>
+        </button>
     <div className="finance-previous-request">
       <div className="finance-tab-container">
         <div
@@ -110,7 +119,8 @@ const InsurancePreviousRequest = () => {
         onClose={handleConnectClosePopup}
         onConfirm={handleConnectConfirm}
       />
-    </div>
+      </div>
+      </div>
   );
 };
 

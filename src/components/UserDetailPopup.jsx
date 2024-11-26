@@ -26,7 +26,10 @@ const UserDetailPopup = ({ user, onClose }) => {
           <div className="popup-info">
             <label>Type </label>
             <span>:</span>
-            <p>{user.type === 0 ? "Super Admin" : "Admin"}</p>
+            <select>
+              <option value={0}>Super Admin</option>
+              <option value={1}>Admin</option>
+            </select>
           </div>
           <div className="popup-info">
             <label>Email ID </label>

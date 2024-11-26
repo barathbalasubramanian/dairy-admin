@@ -135,9 +135,9 @@ const FinanceRequirementPage = () => {
             <p className="finance-data-value">{item.Cluster_Name}</p>
           </div>
         </div>
-        <div className="finance-data-info">
-          <div className="finance-data-info-name">Information:</div>
-          <textarea readOnly value={item.Comments}></textarea>
+        <div className="finance-data-info  border-2">
+          <div className="finance-data-info-name mt-2 ml-2">Information:</div>
+          <textarea readOnly value={item.Comments} ></textarea>
         </div>
         <div className="finance-data-actions">
           <button
@@ -181,7 +181,7 @@ const FinanceRequirementPage = () => {
         <div className="finance-requirement">
           <div className="finance-view-previous-button">
             <button onClick={handleViewPreviousRequest}>
-              View Previous request<span>›</span>
+              View Previous request<span className="text-2xl">›</span>
             </button>
           </div>
           <div className="finance-requirement-content">
