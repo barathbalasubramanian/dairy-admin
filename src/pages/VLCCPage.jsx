@@ -8,61 +8,13 @@ import edit_img from "../static/img/edit-img.svg";
 import "../static/css/FarmerPage.css";
 import { useGlobalContext } from "../Context";
 import useAuth from "./UseAuth.jsx";
+import { Mail, Phone } from "lucide-react";
 
 const VLCCPage = () => {
   const { Vlcc = [], addvlcc, editVlcc } = useGlobalContext();
   const [isAuthChecked, setIsAuthChecked] = useState(false);
 
-  const [farmers, setFarmers] = useState([
-    {
-      id: "579HJ77",
-      name: "Saran",
-      vlcc: "Cbe",
-      farmers: "5",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      name: "Saran",
-      vlcc: "Cbe",
-      farmers: "5",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      name: "Saran",
-      vlcc: "Cbe",
-      farmers: "6",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      name: "Saran",
-      vlcc: "Cbe",
-      farmers: "6",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      name: "Saran",
-      vlcc: "Cbe",
-      farmers: "6",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      name: "Saran",
-      vlcc: "Cbe",
-      farmers: "6",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-  ]);
+  const [farmers, setFarmers] = useState([]);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isIndividualDetailsPopupOpen, setIsIndividualDetailsPopupOpen] =
@@ -140,27 +92,30 @@ const renderCard = (data, index) => (
   >
     <div className="farmer-card-header mb-2">
       <div className="farmer-card-id">
-        {data.VLCC_id}. <span className="farmer-card-name text-black">{data.VLCC_name}</span>
+        <span className="farmer-card-name text-black">{data.VLCC_name}</span>
       </div>
+      {data.VLCC_id}
     </div>
     <div className="farmer-card-body">
       <div className="farmer-card-add-detail mb-2">
         <p>VSP Name</p>
         <span>:</span>
-        {data.VLCC_personname}
+        <span className="capitalize">
+          {data.VLCC_personname}
+        </span>
       </div>
-      <div className="farmer-card-detail">
-        <img src={mail} alt="email icon" style={{ width: "25px", height: "25px", marginRight: "5px" }} />
+      <div className="farmer-card-detail gap-2 font-medium">
+        <Mail size={16} />
         {data.VLCC_email}
       </div>
-      <div className="farmer-card-detail">
-        <img src={phone} alt="phone icon" style={{ width: "25px", height: "25px", marginRight: "5px" }} />
+      <div className="farmer-card-detail gap-2 font-medium">
+        <Phone size={16} />
         {data.VLCC_phno}
       </div>
     </div>
     <div className="farmer-card-subhead mt-2">
       <div className="farmer-card-subhead-detail" style={{ width: "70%" }}>
-        <span>farmers</span>
+        <span className="capitalize">farmers</span>
         {data.total_farmers}
       </div>
     </div>

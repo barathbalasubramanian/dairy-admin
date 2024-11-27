@@ -49,7 +49,7 @@ function App() {
             </div>
             <div className="main-contents">
               <Routes> <Route path="/DataManagement" element={<DataManagement />} />
-                <Route path="/FarmerPage" element={<FarmerPage />} />
+                  <Route path="/FarmerPage" element={<FarmerPage />} />
                 <Route path="/VLCCPage" element={<VLCCPage />} />
                 <Route path="/BMCPage" element={<BMCPage />} />
                 <Route path="/ClusterPage" element={<ClusterPage />} />

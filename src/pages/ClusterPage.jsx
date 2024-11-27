@@ -8,72 +8,14 @@ import edit_img from "../static/img/edit-img.svg";
 import "../static/css/FarmerPage.css";
 import { useGlobalContext } from "../Context";
 import useAuth from "./UseAuth.jsx";
+import { Mail, Phone } from "lucide-react";
 
 const ClusterPage = () => {
   const { cluster = [], addcluster, editCluster } = useGlobalContext();
   const [isAuthChecked, setIsAuthChecked] = useState(false);
 
   const [farmers, setFarmers] = useState([
-    {
-      id: "579HJ77",
-      cluster: "Neelambur",
-      name: "Saran",
-      vlcc: "15",
-      farmers: "5",
-      bmc: "12",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      cluster: "Neelambur",
-      name: "Saran",
-      vlcc: "15",
-      farmers: "5",
-      bmc: "12",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      cluster: "Neelambur",
-      name: "Saran",
-      vlcc: "14",
-      farmers: "6",
-      bmc: "12",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      cluster: "Neelambur",
-      name: "Saran",
-      vlcc: "10",
-      farmers: "6",
-      bmc: "12",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      cluster: "Neelambur",
-      name: "Saran",
-      vlcc: "18",
-      farmers: "6",
-      bmc: "12",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      cluster: "Neelambur",
-      name: "Saran",
-      vlcc: "12",
-      farmers: "6",
-      bmc: "12",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
+
   ]);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -139,22 +81,23 @@ const ClusterPage = () => {
   const renderCard = (data, index) => (
     <div key={index} className="farmer-card-1 w-[295px]">
       <div className="farmer-card-header">
-        <div className="farmer-card-id">{data.clusterId}. <span className="farmer-card-name">{data.clusterName}</span></div>
+        <div className="farmer-card-id"><span className="farmer-card-name capitalize">{data.clusterName}</span></div>
+        {data.clusterId}
       </div>
       <div className="farmer-card-body">
         <div className="farmer-card-add-detail mb-1">
           <p>CP Name</p>
           <span>:</span>
-          {data.clusterPersonName}
+          <span className="capitalize"> 
+            {data.clusterPersonName}
+          </span>
         </div>
-        <div className="farmer-card-detail">
-          <img src={mail} alt="" />
-          <span>: </span>
+        <div className="farmer-card-detail gap-2">
+          <Mail size={16} />
           {data.clusterEmail}
         </div>
-        <div className="farmer-card-detail">
-          <img src={phone} alt="" />
-          <span>: </span>
+        <div className="farmer-card-detail gap-2">
+          <Phone size={16} />
           {data.clusterPhone}
         </div>
       </div>

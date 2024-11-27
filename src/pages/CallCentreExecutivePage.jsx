@@ -8,6 +8,7 @@ import edit_img from "../static/img/edit-img.svg";
 import "../static/css/FarmerPage.css";
 import { useGlobalContext } from "../Context";
 import useAuth from "./UseAuth.jsx";
+import { Mail, Phone } from "lucide-react";
 
 const VLCCPage = () => {
   const { staff = [], addstaff } = useGlobalContext();
@@ -115,7 +116,8 @@ const VLCCPage = () => {
   const renderCard = (data, index) => (
     <div key={index} className="farmer-card-1 w-3/12 p-4">
       <div className="farmer-card-header">
-        <div className="farmer-card-id">{data.Staff_id}. <span className="farmer-card-name">{data.User_Name}</span></div>
+        <div className="farmer-card-id"><span className="farmer-card-name capitalize">{data.User_Name}</span></div>
+        {data.Staff_id}
       </div>
       <div className="farmer-card-subhead">
         <div className="farmer-card-subhead-detail">
@@ -125,14 +127,17 @@ const VLCCPage = () => {
         
       </div>
       <div className="farmer-card-body">
-        <div className="farmer-card-detail">
-          <img src={mail} alt=""  />
+        <div className="farmer-card-detail gap-2">
+          <Mail size={16} />
+          <span style={{fontWeight:"500"}}>
           {data.Email}
+          </span>
         </div>
-        <div className="farmer-card-detail">
-          <img src={phone} alt="" />
-         
+        <div className="farmer-card-detail gap-2">
+          <Phone size={16} />
+          <span style={{fontWeight:"500"}}>
           {data.Phno}
+          </span>
         </div>
       </div>
       <div className="farmer-card-footer">

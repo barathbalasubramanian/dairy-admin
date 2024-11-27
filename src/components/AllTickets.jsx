@@ -56,8 +56,8 @@ const AllTickets = ({ handleBack }) => {
           <span>Back</span>
         </button>
       </div>
-      <div className="progress-bar-container w-full ">
-        <div className="progress-bar grid grid-cols-3 gap-4 w-full">
+      <div className="progress-bar-container w-full">
+        <div className="progress-bar grid grid-cols-3 gap-4 w-full" style={{padding:"0"}}>
           {steps.map((label, index) => (
             <button
               key={index}
@@ -123,7 +123,7 @@ const AllTickets = ({ handleBack }) => {
       {/* Tickets Table */}
       <div className="all-tickets-container">
         <div className="all-tickets-section">
-          <h3>Assigned</h3>
+          <h3 className="mb-4">Assigned</h3>
           <table className="all-tickets-table">
             <thead>
               <tr>

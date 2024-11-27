@@ -9,6 +9,7 @@ import "../static/css/FarmerPage.css";
 import { useGlobalContext } from "../Context";
 import useAuth from "./UseAuth.jsx";
 import { MapPin,ArrowRight  } from "react-feather"; 
+import { Mail, Phone } from "lucide-react";
 
 
 const ServiceProviderPage = () => {
@@ -77,10 +78,10 @@ const renderCard = (data, index) => (
   >
     {/* Header */}
     <div className="farmer-card-header text-start w-full">
-      <div className="farmer-card-id text-lg font-semibold text-gray-800">
-        {data.doctorId}.{" "}
-        <span className="farmer-card-name">{data.doctorName}</span>
+      <div className="farmer-card-id text-lg font-medium text-gray-800">
+        <span className="farmer-card-name capitalize">{data.doctorName}</span>
       </div>
+      {data.doctorId}
     </div>
 
     {/* Subhead */}
@@ -95,17 +96,21 @@ const renderCard = (data, index) => (
 
     {/* Body */}
     <div className="farmer-card-body w-full  ">
-      <div className="farmer-card-detail flex items-center text-gray-600 text-3sm ">
-        <img src={mail} alt="Email" className="w-5 h-5 mr-2" />
+      <div className="farmer-card-detail flex items-center gap-2 text-gray-600 text-3sm ">
+        <Mail size={16} />
+        <span style={{fontWeight:"500"}}> 
         {data.email}
+        </span>
       </div>
-      <div className="farmer-card-detail flex items-center text-gray-600 text-3sm">
-        <img src={phone} alt="Phone" className="w-5 h-5 mr-2" />
+      <div className="farmer-card-detail flex items-center gap-2 text-gray-600 text-3sm">
+        <Phone size={16} />
+        <span style={{fontWeight:"500"}}>
         {data.phone}
+        </span>
       </div>
-      <div className="farmer-card-add-detail flex items-center text-gray-700 text-3sm">
+      <div className="farmer-card-detail flex items-center gap-2 text-gray-600 text-3sm">
         <MapPin size={16} />
-        <span className="ml-3">{data.address}</span>
+        <span className="" style={{fontWeight:"500"}}>{data.address}</span>
       </div>
     </div>
 

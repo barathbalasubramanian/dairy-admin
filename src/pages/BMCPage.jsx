@@ -8,66 +8,13 @@ import edit_img from "../static/img/edit-img.svg";
 import "../static/css/FarmerPage.css";
 import { useGlobalContext } from "../Context";
 import useAuth from "./UseAuth.jsx";
+import { Mail, Phone } from "lucide-react";
 
 const VLCCPage = () => {
   const { bmc = [], addbmc } = useGlobalContext();
   const [isAuthChecked, setIsAuthChecked] = useState(false);
 
   const [farmers, setFarmers] = useState([
-    {
-      id: "579HJ77",
-      bmc: "Neelambur",
-      name: "Saran",
-      vlcc: "15",
-      farmers: "5",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      bmc: "Neelambur",
-      name: "Saran",
-      vlcc: "15",
-      farmers: "5",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      bmc: "Neelambur",
-      name: "Saran",
-      vlcc: "14",
-      farmers: "6",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      bmc: "Neelambur",
-      name: "Saran",
-      vlcc: "10",
-      farmers: "6",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      bmc: "Neelambur",
-      name: "Saran",
-      vlcc: "18",
-      farmers: "6",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
-    {
-      id: "579HJ77",
-      bmc: "Neelambur",
-      name: "Saran",
-      vlcc: "12",
-      farmers: "6",
-      email: "example@example.com",
-      phone: "9876543210",
-    },
   ]);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -127,20 +74,25 @@ const VLCCPage = () => {
   const renderCard = (data, index) => (
     <div key={index} className="farmer-card-1 w-[295px]">
       <div className="farmer-card-header">
-        <div className="farmer-card-id">{data.bmcId}. <span className="farmer-card-name text-black">{data.bmcName}</span></div>
+        <div className="farmer-card-id"><span className="farmer-card-name text-black capitalize">{data.bmcName}</span></div>
+        <div>
+          {data.bmcId}
+        </div>
       </div>
       <div className="farmer-card-body">
         <div className="farmer-card-add-detail mb-1">
           <p>RDO Name</p>
           <span>:</span>
+          <span className="capitalize">
           {data.bmcPersonName}
+          </span>
         </div>
-        <div className="farmer-card-detail">
-          <img src={mail} alt="" />
+        <div className="farmer-card-detail gap-2">
+          <Mail size={16} />
           {data.bmcEmail}
         </div>
-        <div className="farmer-card-detail">
-          <img src={phone} alt="" />
+        <div className="farmer-card-detail gap-2">
+          <Phone size={16} />
           {data.bmcPhone}
         </div>
       </div>

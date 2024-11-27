@@ -29,7 +29,7 @@ const Tickets = () => {
   ];
 
   return (
-    <div className="tickets">
+    <div className="tickets justify-center mt-16">
       {items.map((item) => (
         <div key={item.title} className="ticket-item">
           <div className="ticket-title">{item.title}</div>

@@ -9,7 +9,7 @@
   background-color: #4695b8;
   padding-top: 10px;
   border-radius: 0px;
-  width: 295px;
+  width: 320px;
   margin-bottom: 0px;
 }
 
@@ -19,6 +19,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 100%;
 }
 
 .logoimg {
@@ -165,7 +166,7 @@ ul.dropdown-menu  {
 }
 
 .nav-ite img {
-  width: 30px;
+  width: 24px;
 }
 
 .nav-ite .arrow {

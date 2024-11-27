@@ -26,7 +26,6 @@
   width: 100%;
   max-width: 1200px;
   padding: 10px;
-  /* margin-left: 320px; */
 }
 @tailwind base;
 @tailwind components;

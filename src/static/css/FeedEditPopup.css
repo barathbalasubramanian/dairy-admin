@@ -83,11 +83,10 @@
 .feed-save-button {
   background-color: #4695b8;
   color: #fff;
-  width: 240px;
-  height: 50px;
+  padding: .3em 4em;
   border: none;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   border-radius: 8px;
   cursor: pointer;
   margin-top: 10px;

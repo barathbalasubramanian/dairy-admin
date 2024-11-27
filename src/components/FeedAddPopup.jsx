@@ -37,45 +37,59 @@ const AddPopup = ({ isOpen, onClose, onAddCard, tab }) => {
         <button className="close-button" onClick={handleClose}>
           <img src={close_button} alt="Close" />
         </button>
-        <form onSubmit={handleAddClick}>
-          <div className="contents">
-            <label>{tab === "Feed" ? "Feed Type" : "Supplementary Type"}</label>
-        
-            <input className=""
+        <form  onSubmit={handleAddClick}  className="w-full bg-white p-6 " >
+          <div className="mb-4 flex items-center">
+            <label className=" w-[50%] block font-medium text-gray-700 text-xl">
+              {tab === "Feed" ? "Feed Type" : "Supplementary Type"}
+            </label>
+            <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder={`Enter ${tab === "Feed" ? "Feed" : "Supplementary"} type`}
               required
+              className="mt-1 block w-[50%] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
-          <div className="contents mt-4">
-            <label>Manufacturer Name</label>
-            <input className="mt-4"
+          <div className="mb-4 flex items-center">
+            <label className="w-[50%] block font-medium text-gray-700 text-xl">
+              Manufacturer Name
+            </label>
+            <input
               type="text"
               value={Manufacturer}
               onChange={(e) => setManufacturer(e.target.value)}
               placeholder="Enter Name"
               required
+              className="mt-1 block w-[50%] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
-          <div className="contents mt-2">
-            <label>Price</label>
-            <div className="price-input ">
-              <span className="currency-prefix">Rs.</span>
-              <input className=""
+          <div className="mb-4 flex items-center">
+            <label className="w-[50%] block font-medium text-gray-700 text-xl">Price</label>
+            <div className="relative mt-1 w-[50%]">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                Rs.
+              </span>
+              <input
                 type="text"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder="Enter Price"
                 required
+                className="pl-10 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
           </div>
-          <button type="submit" className="add_button">
-            Add +
-          </button>
+          <div className="w-full text-center items-center justify-between mt-6">
+            <button
+              type="submit"
+              className="w-fit m-auto text-center px-10 py-2 bg-[#4695b8] text-white text-xl font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              Add +
+            </button>
+          </div>
         </form>
+
         <ConfirmationPopup
           isOpen={isConfirmOpen}
           onClose={() => setConfirmOpen(false)}

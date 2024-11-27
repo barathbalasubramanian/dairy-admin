@@ -22,7 +22,6 @@ const TicketCenterPage = () => {
 
   return (
     <div className="ticket-center">
-      <div className="call-center"></div>
       {!showTicketDetails ? (
         <div className="ticket-center-content">
           <Tickets />

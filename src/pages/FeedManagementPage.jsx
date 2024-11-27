@@ -74,16 +74,20 @@ const FeedManagementPage = () => {
           <span>+</span>Add
         </button>
       </div>
-      <div className="feed-tab-container">
+      <div className="flex gap-10 w-fit m-auto">
         <div
-          className={`feed-tab ${activeTab === "Feed" ? "feed-tabactive" : ""}`}
+          className={`py-2 px-6 text-center min-w-[14em] cursor-pointer rounded-lg ${
+            activeTab === "Feed" ? "bg-[#4695b8] text-white shadow-md"
+              : "bg-gray-200 text-gray-600 hover:bg-gray-100"
+          }`}
           onClick={() => handleTabClick("Feed")}
         >
           Feed
         </div>
         <div
-          className={`feed-tab ${
-            activeTab === "Supplementary" ? "feed-tabactive" : ""
+          className={`py-2 px-6 text-center min-w-[14em] cursor-pointer rounded-lg ${
+            activeTab === "Supplementary"  ? "bg-[#4695b8] text-white shadow-md"
+              : "bg-gray-200 text-gray-600 hover:bg-gray-100"
           }`}
           onClick={() => handleTabClick("Supplementary")}
         >

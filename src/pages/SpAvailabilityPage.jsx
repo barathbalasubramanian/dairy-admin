@@ -6,6 +6,7 @@ import FinanceConnectPopup from "../components/FinanceConnectPopup.jsx";
 import "../static/css/SpAvailabilityPage.css";
 import { useGlobalContext } from "../Context";
 import useAuth from "./UseAuth.jsx";
+import { Mail, Phone } from "lucide-react";
 
 const SpAvailabilityPage = () => {
   const { sp } = useGlobalContext();
@@ -69,10 +70,11 @@ const SpAvailabilityPage = () => {
   };
 
   const renderCard = (data, isAvailable) => (
-    <div key={data.Doctor_id} className="sp-card ">
+    <div key={data.Doctor_id} className="sp-card">
       <div className="sp-card-header">
         <div className="sp-card-idname">
-          <div className="sp-card-id">{data.Doctor_id}. {data.Name}</div>
+          <div className="sp-card-id capitalize">{data.Name}</div>
+          <div>{data.Doctor_id}</div>
         </div>
         <div
           className={`sp-status ${isAvailable ? "available" : "unavailable"}`}
@@ -93,14 +95,15 @@ const SpAvailabilityPage = () => {
         </div>
       </div>
       <div className="sp-card-body">
-        <div className="sp-card-detail">
-          <img src={mail} alt="Email" />
-          <span>: </span>
+        <div className="sp-card-detail gap-2">
+          <Mail size={16} />
+          {/* <span>: </span> */}
           {data.Email}
         </div>
-        <div className="sp-card-detail">
-          <img src={phone} alt="Phone" />
-          <span>: </span>
+        <div className="sp-card-detail gap-2">
+          {/* <img src={phone} alt="Phone" /> */}
+          {/* <span>: </span> */}
+          <Phone size={16} />
           {data.Phno}
         </div>
         {!isAvailable && (
@@ -126,9 +129,9 @@ const SpAvailabilityPage = () => {
 
   return (
     <div className="sp-availability-page">
-  <div className="sp-box">
-    <div className="flex w-[77%] items-center justify-center m-auto space-x-8">
-      <div className="sp-inputgroup flex-1">
+  <div className="flex w-full items-center justify-center">
+    <div className="flex w-[85%] items-center justify-center gap-5 m-auto">
+      <div className="sp-inputgroup min-w-[18em]">
         <button
           onClick={() => setTab("Available")}
           className={`py-3 px-4 rounded-lg transition-colors duration-200 w-10/12
@@ -141,7 +144,7 @@ const SpAvailabilityPage = () => {
           Available
         </button>
       </div>
-      <div className="sp-inputgroup flex-1">
+      <div className="sp-inputgroup min-w-[18em]">
         <button
           onClick={() => setTab("Unavailable")}
           className={`py-3 px-4 rounded-lg transition-colors duration-200 w-10/12
@@ -159,7 +162,7 @@ const SpAvailabilityPage = () => {
 
       {/* Filter Options */}
      <div className="flex flex-col items-center justify-center py-8">
-  <div className="w-[77%] flex justify-center gap-4 items-center p-4 bg-gray-100 rounded-lg shadow-lg transition-all duration-300">
+  <div className="w-[85%] flex justify-center gap-4 items-center p-4 bg-gray-100 rounded-lg shadow-lg transition-all duration-300">
     {/* Dropdown 1 */}
     <select
       value={typeFilter}

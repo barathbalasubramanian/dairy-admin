@@ -185,18 +185,20 @@ const FinanceRequirementPage = () => {
             </button>
           </div>
           <div className="finance-requirement-content">
-            <div className="finance-tab-container">
+            <div className="flex w-fit m-auto gap-10 mt-4">
               <div
-                className={`finance-tab ${
-                  activeTab === "Loan" ? "tabactive" : ""
+                className={`finance-tab min-w-[16em] w-fit py-2 rounded-lg  ${
+                  activeTab === "Loan" ? "bg-[#4695b8] text-white shadow-md"
+                : "bg-gray-200 hover:bg-gray-300"
                 }`}
                 onClick={() => handleTabClick("Loan")}
               >
                 Loan
               </div>
               <div
-                className={`finance-tab ${
-                  activeTab === "Insurance" ? "tabactive" : ""
+                className={`finance-tab min-w-[16em] w-fit py-2  rounded-lg  ${
+                  activeTab === "Insurance" ? "bg-[#4695b8] text-white shadow-md"
+                : "bg-gray-200 hover:bg-gray-300"
                 }`}
                 onClick={() => handleTabClick("Insurance")}
               >

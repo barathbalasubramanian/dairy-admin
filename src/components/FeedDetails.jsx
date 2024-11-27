@@ -3,7 +3,8 @@ import down_up_arrow from "../static/img/down-up-arrow.svg";
 import "../static/css/FeedDetails.css";
 import FeedOrderDetailsPopup from "../components/FeedOrderDetailsPopup.jsx";
 import { useGlobalContext } from "../Context";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { ArrowLeft } from "lucide-react";
 
 const FeedDetails = ({ handleBack }) => {
   const { currentFeedPeriodData, previousFeedPeriodData } = useGlobalContext();
@@ -31,18 +32,18 @@ const FeedDetails = ({ handleBack }) => {
       <button
         onClick={handleBack}
         aria-label="Go back"
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-[0px_5px_15px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-x-1 mb-6"
+        className="flex gap-2 items-center"
       >
-        <FaArrowLeft size={24} className="text-gray-700" />
+        <ArrowLeft className="text-black font-medium text-xl" /> Back
       </button>
 
       <div className="mb-8">
         <div className="flex justify-center gap-12">
           <button
-            className={`px-6 py-2  transition-all duration-300 ${
+            className={`px-6 py-2  transition-all rounded-lg duration-300 ${
               currentPeriod
-                ? "bg-[#06ad9d]  rounded-lg  text-white"
-                : "bg-white text hover:bg-gray-100"
+                ? "bg-[#4695b8] text-white shadow-md"
+                : "bg-gray-200 hover:bg-gray-300"
             }`}
             onClick={() => handlePeriodChange(true)}
           >
@@ -51,8 +52,8 @@ const FeedDetails = ({ handleBack }) => {
           <button
             className={`px-6 py-2 rounded-lg transition-all duration-300 ${
               !currentPeriod
-                ? "bg-[#06ad9d] text-white"
-                : "bg-white text-gray-600 hover:bg-gray-100"
+                ? "bg-[#4695b8] text-white shadow-md"
+                : "bg-gray-200 text-gray-600 hover:bg-gray-100"
             }`}
             onClick={() => handlePeriodChange(false)}
           >
@@ -62,7 +63,7 @@ const FeedDetails = ({ handleBack }) => {
       </div>
 
       {farmersData && farmersData.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-64 flex justify-center">
+        <div className="flex justify-center gap-14">
           {farmersData.map((farmer, index) => (
             <div
               key={index}
@@ -101,7 +102,7 @@ const FeedDetails = ({ handleBack }) => {
                   onClick={() => handleViewMore(farmer.Former_id)}
                 >
                   View More
-                  <img src={down_up_arrow} alt="" className="w-5 h-5 " />
+                  <FaArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>

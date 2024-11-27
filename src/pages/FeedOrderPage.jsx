@@ -81,7 +81,7 @@ const FeedPage = () => {
       {!showFarmerDetails && (
         <div className="main-content">
           <FeedOrder />
-          <div className="button-container">
+          <div className="button-container pt-4">
             <button className="view-order-button" onClick={handleViewOrder}>
               View Order  <ArrowRight className="w-6 h-6 ml-4" />
             </button>

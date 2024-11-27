@@ -26,8 +26,8 @@ const MainPage = () => {
   return (
     <div className="">
       {/* Toggle Box */}
-      <div className=" ">
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-2 mt-4">
+      <div className="my-4">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-2 mt-4 ">
           {Object.keys(pageComponents).map((page) => (
             <button
               key={page}

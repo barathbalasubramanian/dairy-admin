@@ -13,15 +13,14 @@
 
 .finance-view-previous-button button {
   cursor: pointer;
-  width: 260px;
-  height: 50px;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 6px;
   background-color: #4695b8;
   color: #fff;
   border: none;
   transition: all 0.3s ease;
+  padding: .3em 2em;
 }
 
 .finance-view-previous-button span {

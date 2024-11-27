@@ -8,6 +8,7 @@ import "../static/css/FarmerPage.css";
 import { useGlobalContext } from "../Context";
 import useAuth from "./UseAuth.jsx";
 import { Phone, MapPin } from "react-feather"; 
+import { ArrowRight } from "lucide-react";
 
 const FarmerPage = () => {
   const { Farmer, addfarmer } = useGlobalContext();
@@ -58,8 +59,8 @@ const FarmerPage = () => {
   const renderCard = (data) => (
     <div key={data.Former_id} className="farmer-card w-3/12">
       <div className="farmer-card-header">
-        <div className="farmer-card-id">{data.Former_id}. <span className="farmer-card-name">{data.Name}</span></div>
-        
+        <div className="farmer-card-id"><span className="farmer-card-name capitalize">{data.Name}</span></div>
+        {data.Former_id}
       </div>
       <div className="farmer-card-subhead">
         <div className="farmer-card-subhead-detail">
@@ -74,11 +75,11 @@ const FarmerPage = () => {
       <div className="farmer-card-body">
       <div className="farmer-card-detail">
         <Phone size={16} /> {/* Icon for Phone */}
-        <span className="ml-2">{data.phno || "N/A"}</span>
+        <span className="ml-2" style={{fontWeight:"500"}}>{data.phno || "N/A"}</span>
       </div>
       <div className="farmer-card-detail">
         <MapPin size={16} />
-        <span className="ml-2">{data.Address?.Address_line1 || "N/A"}</span>
+        <span className="ml-2" style={{fontWeight:"500"}}>{data.Address?.Address_line1 || "N/A"}</span>
       </div>
     </div>
       <div className="farmer-card-footer">
@@ -87,7 +88,7 @@ const FarmerPage = () => {
           onClick={() => handleViewMoreClick(data)}
         >
           View More
-          <img src={arrow} alt="View More" />
+          <ArrowRight className="w-5 h-5 ml-2" />
         </button>
       </div>
     </div>

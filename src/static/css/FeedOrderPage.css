@@ -1,11 +1,14 @@
 .main-content {
   background-color: #dcecf9;
-  max-width: 100%;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
   height: fit-content;
   border-radius: 16px;
-  margin-top: 30px;
-  padding-bottom: 70px;
-  
+  margin-top: 40px;
+  padding-bottom: 35px;
 }
 
 .button-container {

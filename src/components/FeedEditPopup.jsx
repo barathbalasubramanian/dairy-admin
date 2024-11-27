@@ -47,12 +47,12 @@ const EditPopup = ({ isOpen, onClose, onEditCard, cardData }) => {
           <label>
             {formData.tab === "Feed" ? "Feed Type" : "Supplementary Type"}
           </label>
-          <span>:</span>
+          {/* <span>:</span> */}
           <input name="Name" value={formData.Name} onChange={handleChange} />
         </div>
         <div className="feed-edit-contents">
           <label>Manufacturer Name</label>
-          <span>:</span>
+          {/* <span>:</span> */}
           <input
             name="Manufacturer"
             value={formData.Manufacturer}
@@ -61,7 +61,7 @@ const EditPopup = ({ isOpen, onClose, onEditCard, cardData }) => {
         </div>
         <div className="feed-edit-contents">
           <label>Price</label>
-          <span>:</span>
+          {/* <span>:</span> */}
           <div className="price-input">
             <span className="currency-prefix">Rs.</span>
             <input
