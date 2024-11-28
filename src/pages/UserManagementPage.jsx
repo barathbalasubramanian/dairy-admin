@@ -66,12 +66,12 @@ const UserManagementPage = () => {
 
   return (
     <div className="User-Management">
-      <div className="user-add-button">
-        <button onClick={handleCreateUserClick}>
-          <span>+</span>Create New User
+      <div className=" text-white flex items-end gap-2 justify-end rounded-lg">
+        <button onClick={handleCreateUserClick} className="bg-[#4695b8] text-xl font-medium px-4 py-3 w-fit rounded-lg">
+          <span>+</span> Create New User
         </button>
       </div>
-      <div className="user-cards">
+      <div className="flex flex-wrap items-center justify-start gap-8 px-10 py-10">
         {admin.map((user, index) => (
           <UserCard
             key={user.id || index} 

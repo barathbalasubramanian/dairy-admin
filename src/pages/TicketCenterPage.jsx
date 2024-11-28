@@ -4,6 +4,7 @@ import AllTickets from "../components/AllTickets.jsx";
 import "../static/css/TicketCenterPage.css";
 import { useGlobalContext } from "../Context";
 import useAuth from "./UseAuth.jsx";
+import { ArrowRight, MoveRight } from "lucide-react";
 
 const TicketCenterPage = () => {
   const { TicketCount = 0 } = useGlobalContext();
@@ -26,8 +27,8 @@ const TicketCenterPage = () => {
         <div className="ticket-center-content">
           <Tickets />
           <div className="view-button">
-            <button className="view-all-button" onClick={handleViewOrder}>
-              View All Tickets <span className="arrow">›</span>
+            <button className="view-all-button" onClick={handleViewOrder} style={{backgroundColor:"#4695b8"}} >
+              View All Tickets <span className="arrow"> <ArrowRight/> </span>
             </button>
           </div>
         </div>

@@ -8,6 +8,7 @@ import "../static/css/FinanceRequirementPage.css";
 import { useGlobalContext } from "../Context";
 import useAuth from "./UseAuth.jsx";
 import axios from "axios";
+import { ArrowRight } from "lucide-react";
 
 const FinanceRequirementPage = () => {
   const { CurrCost, connect, cancelLoan, finalLoan } = useGlobalContext();
@@ -135,7 +136,7 @@ const FinanceRequirementPage = () => {
             <p className="finance-data-value">{item.Cluster_Name}</p>
           </div>
         </div>
-        <div className="finance-data-info  border-2">
+        <div className="finance-data-info border-2">
           <div className="finance-data-info-name mt-2 ml-2">Information:</div>
           <textarea readOnly value={item.Comments} ></textarea>
         </div>
@@ -169,25 +170,24 @@ const FinanceRequirementPage = () => {
     return <div>Loading...</div>;
   }
 
+  const handleBack = () => {
+    setIsViewingPreviousRequest(false);
+  }
+
   return (
     <>
       {isViewingPreviousRequest ? (
         activeTab === "Loan" ? (
-          <LoanPreviousRequest />
+          <LoanPreviousRequest handleBack={handleBack}/>
         ) : (
-          <InsurancePreviousRequest />
+          <InsurancePreviousRequest handleBack={handleBack}/>
         )
       ) : (
         <div className="finance-requirement">
-          <div className="finance-view-previous-button">
-            <button onClick={handleViewPreviousRequest}>
-              View Previous request<span className="text-2xl">›</span>
-            </button>
-          </div>
           <div className="finance-requirement-content">
             <div className="flex w-fit m-auto gap-10 mt-4">
               <div
-                className={`finance-tab min-w-[16em] w-fit py-2 rounded-lg  ${
+                className={`text-lg px-6 text-center min-w-[16em] w-fit py-2 rounded-lg  ${
                   activeTab === "Loan" ? "bg-[#4695b8] text-white shadow-md"
                 : "bg-gray-200 hover:bg-gray-300"
                 }`}
@@ -196,7 +196,7 @@ const FinanceRequirementPage = () => {
                 Loan
               </div>
               <div
-                className={`finance-tab min-w-[16em] w-fit py-2  rounded-lg  ${
+                className={`text-lg px-6 text-center min-w-[16em] w-fit py-2 rounded-lg  ${
                   activeTab === "Insurance" ? "bg-[#4695b8] text-white shadow-md"
                 : "bg-gray-200 hover:bg-gray-300"
                 }`}
@@ -211,6 +211,11 @@ const FinanceRequirementPage = () => {
                 ? renderData(loanDataToDisplay)
                 : renderData(insuranceDataToDisplay)}
             </div>
+          </div>
+          <div className="w-full flex mb-4 items-center justify-center">
+            <button onClick={handleViewPreviousRequest} className="bg-[#4695b8] text-white font-medium px-4 py-2 text-lg rounded-md flex gap-2">
+              View Previous request<span className="text-2xl"> <ArrowRight/> </span>
+            </button>
           </div>
         </div>
       )}

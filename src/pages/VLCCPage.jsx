@@ -82,12 +82,12 @@ const renderCard = (data, index) => (
     key={index}
     className="farmer-card-1"
     style={{
-      width: "25%",
+      minWidth: "350px",
       margin: "10px", // Adds small spacing between cards
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between",
-      // alignItems: "center",
+      minHeight: "fit-content",
     }}
   >
     <div className="farmer-card-header mb-2">
@@ -123,6 +123,7 @@ const renderCard = (data, index) => (
       <button
         className="connect-button"
         onClick={() => handleViewMoreClick(data)}
+        style={{ backgroundColor: "#4695b8", marginTop: "20px" }}
       >
         Edit
         <img src={edit_img} alt="edit icon" style={{ width: "24px", height: "24px", marginLeft: "5px" }} />
@@ -130,22 +131,6 @@ const renderCard = (data, index) => (
     </div>
   </div>
 );
-
-const CardContainer = ({ dataList }) => (
-  <div
-    className="card-container flex flex-wrap justify-between"
-    style={{
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "space-between", // Space between the cards
-      alignItems: "flex-start",
-      gap: "10px", // Optional: Add gap if `justify-between` is insufficient
-    }}
-  >
-    {dataList.map((data, index) => renderCard(data, index))}
-  </div>
-);
-
 
 
   useAuth(() => setIsAuthChecked(true));
@@ -172,7 +157,7 @@ const CardContainer = ({ dataList }) => (
             </div>
           )}
         </div>
-        <div className="farmer-card-container flex justify-center">{Vlcc.map(renderCard)}</div>
+        <div className="flex flex-wrap gap-y-4 justify-start gap-2 py-10 px-6">{Vlcc.map(renderCard)}</div>
       </>
       <IndividualDetailsPopup
         isOpen={isIndividualDetailsPopupOpen}

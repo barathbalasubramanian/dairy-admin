@@ -70,7 +70,7 @@ const InsurancePreviousRequest = ({handleBack}) => {
             <p className="finance-data-value">{item.Cluster_Name}</p>
           </div>
         </div>
-        <div className="finance-data-info">
+        <div className="finance-data-info border-2 p-2">
           <div className="finance-data-info-name">Information:</div>
           <textarea readOnly value={item.Comments}></textarea>
         </div>
@@ -87,26 +87,29 @@ const InsurancePreviousRequest = ({handleBack}) => {
   };
 
   return (
-    <div> <button
+    <div> 
+      <button
           onClick={handleBack}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
+          className="flex items-center mt-4 space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
         >
           <ArrowLeft />
           <span>Back</span>
         </button>
-    <div className="finance-previous-request">
-      <div className="finance-tab-container">
+    <div className="finance-previous-request" style={{marginTop:"0"}}>
+      <div className="w-full flex items-center justify-center gap-10">
         <div
-          className={`finance-tab ${
-            activeTab === "Processed" ? "tabactive" : ""
+          className={`min-w-[16em] text-center px-4 py-2 rounded-md  ${
+            activeTab === "Processed" ? "bg-[#4695b8] text-white shadow-md"
+                : "bg-gray-200 hover:bg-gray-300"
           }`}
           onClick={() => handleTabClick("Processed")}
         >
           Processed
         </div>
         <div
-          className={`finance-tab ${
-            activeTab === "Cancelled" ? "tabactive" : ""
+          className={`min-w-[16em] text-center px-4 py-2 rounded-md  ${
+            activeTab === "Cancelled" ? "bg-[#4695b8] text-white shadow-md"
+                : "bg-gray-200 hover:bg-gray-300"
           }`}
           onClick={() => handleTabClick("Cancelled")}
         >

@@ -57,7 +57,7 @@ const FarmerPage = () => {
   };
 
   const renderCard = (data) => (
-    <div key={data.Former_id} className="farmer-card w-3/12">
+    <div key={data.Former_id} className="farmer-card min-w-[350px]">
       <div className="farmer-card-header">
         <div className="farmer-card-id"><span className="farmer-card-name capitalize">{data.Name}</span></div>
         {data.Former_id}
@@ -86,6 +86,7 @@ const FarmerPage = () => {
         <button
           className="connect-button"
           onClick={() => handleViewMoreClick(data)}
+          style={{backgroundColor:"#4695b8"}}
         >
           View More
           <ArrowRight className="w-5 h-5 ml-2" />
@@ -126,7 +127,7 @@ const FarmerPage = () => {
               </div>
             )}
           </div>
-          <div className="farmer-card-container flex justify-center">
+          <div className="flex flex-wrap gap-8 px-6 py-10 justify-start">
             {Farmer && Farmer.map(renderCard)}
           </div>
         </>

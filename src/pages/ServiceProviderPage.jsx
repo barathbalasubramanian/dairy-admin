@@ -71,7 +71,7 @@ const ServiceProviderPage = () => {
 const renderCard = (data, index) => (
   <div
     key={index}
-    className="farmer-card flex flex-col justify-between items-start bg-white shadow-lg rounded-lg  space-y-1 w-[295px] "
+    className="farmer-card flex flex-col justify-between items-start bg-white shadow-lg rounded-lg  space-y-1 min-w-[350px] "
     style={{
       boxShadow: "0px 6px 20px rgba(0, 0, 0, 0.25)", // Increased shadow intensity
     }}
@@ -119,6 +119,7 @@ const renderCard = (data, index) => (
       <button
         className="connect-button flex items-center bg-[#06ad9d] text-white px-3 py-2 rounded-md hover:bg-[#058d84] transition"
         onClick={() => handleViewMoreClick(data)}
+        style={{backgroundColor:"#4695b8"}}
       >
         View More
         <ArrowRight className="w-5 h-5 ml-2" />
@@ -159,7 +160,7 @@ const renderCard = (data, index) => (
               </div>
             )}
           </div>
-          <div className="farmer-card-container flex justify-center">{alldoc.map(renderCard)}</div>
+          <div className="flex flex-wrap gap-y-4 py-10 gap-x-8 items-start justify-start px-6">{alldoc.map(renderCard)}</div>
         </>
       )}
       <IndividualDetailsPopup

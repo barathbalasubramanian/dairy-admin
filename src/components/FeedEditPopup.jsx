@@ -59,18 +59,20 @@ const EditPopup = ({ isOpen, onClose, onEditCard, cardData }) => {
             onChange={handleChange}
           />
         </div>
-        <div className="feed-edit-contents">
-          <label>Price</label>
-          {/* <span>:</span> */}
-          <div className="price-input">
-            <span className="currency-prefix">Rs.</span>
-            <input
-              name="Price"
-              value={formData.Price}
-              onChange={handleChange}
-            />
+        <div className="mb-4 flex items-center">
+            <label className="w-[41%] block font-semibold text-black text-xl">Price</label>
+            <div className="relative mt-1 w-[59%]">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                Rs.
+              </span>
+              <input
+                name="Price"
+                value={formData.Price}
+                onChange={handleChange}
+                className="pl-10 block w-full outline-none px-3 py-3 border border-gray-300 rounded-md shadow-sm"
+              />
+            </div>
           </div>
-        </div>
         <button onClick={handleSave} className="feed-save-button">
           Save
         </button>

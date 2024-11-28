@@ -72,7 +72,7 @@ const VLCCPage = () => {
   };
 
   const renderCard = (data, index) => (
-    <div key={index} className="farmer-card-1 w-[295px]">
+    <div key={index} className="farmer-card-1 w-[350px]">
       <div className="farmer-card-header">
         <div className="farmer-card-id"><span className="farmer-card-name text-black capitalize">{data.bmcName}</span></div>
         <div>
@@ -110,6 +110,7 @@ const VLCCPage = () => {
         <button
           className="connect-button"
           onClick={() => handleViewMoreClick(data)}
+          style={{backgroundColor:"#4695b8", marginTop: "20px"}}
         >
           Edit
           <img src={edit_img} alt="" />
@@ -142,7 +143,7 @@ const VLCCPage = () => {
             </div>
           )}
         </div>
-        <div className="farmer-card-container flex justify-center">{bmc.map(renderCard)}</div>
+        <div className="flex px-6 py-10 flex-wrap justify-start gap-8">{bmc.map(renderCard)}{bmc.map(renderCard)}</div>
       </>
       <IndividualDetailsPopup
         isOpen={isIndividualDetailsPopupOpen}

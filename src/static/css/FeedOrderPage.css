@@ -19,11 +19,9 @@
 }
 
 .view-order-button {
-  background-color: #06ad9d;
+  background-color: #4695b8;
   color: white;
   border: none;
-  width: 281px;
-  height: 63px;
   padding: 8px 12px;
   border-radius: 8px;
   font-size: 24px;
@@ -32,6 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: .5em 2em;
 }
 
 .view-order-button .arrow {
@@ -42,9 +41,7 @@
 .export-button {
   background-color: transparent;
   color: #000000;
-  border: 3px solid #06ad9d;
-  width: 281px;
-  height: 63px;
+  border: 3px solid #4695b8;
   padding: 8px 12px;
   border-radius: 8px;
   font-size: 24px;

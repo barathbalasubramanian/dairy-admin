@@ -57,7 +57,7 @@ const AllTickets = ({ handleBack }) => {
         </button>
       </div>
       <div className="progress-bar-container w-full">
-        <div className="progress-bar grid grid-cols-3 gap-4 w-full" style={{padding:"0"}}>
+        <div className="grid grid-cols-3 gap-4 w-full" style={{padding:"0"}}>
           {steps.map((label, index) => (
             <button
               key={index}
@@ -66,10 +66,10 @@ const AllTickets = ({ handleBack }) => {
           ${
             activeStep === index + 1
               ? index === 0
-                ? "bg-blue-500 text-white"
+                ? "bg-[#1155CA] text-white"
                 : index === 1
-                ? "bg-yellow-500 text-white"
-                : "bg-green-500 text-white"
+                ? "bg-[#EDBD05] text-white"
+                : "bg-[#3A7327] text-white"
               : "bg-gray-200 text-gray-700 hover:bg-gray-300"
           }
         `}
@@ -91,29 +91,36 @@ const AllTickets = ({ handleBack }) => {
             className="p-2 border border-gray-300 rounded-md w-full"
           />
 
-          <select
-            value={typeFilter}
-            onChange={(e) => setTypeFilter(e.target.value)}
-            className="p-2 border border-gray-300 rounded-md w-full"
-          >
-            <option value="">All Types</option>
-            <option value="Veterinary">Veterinary</option>
-            <option value="AI">AI</option>
-            <option value="Feed">Feed</option>
-            <option value="Insurance">Insurance</option>
-            <option value="Loan">Loan</option>
-          </select>
-          <select
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value)}
-            className="p-2 border border-gray-300 rounded-md w-full"
-          >
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-          </select>
+          <div className="border border-gray-300 px-2 bg-white">
+            <select
+              value={typeFilter}
+              onChange={(e) => setTypeFilter(e.target.value)}
+              className="p-2 border-none outline-none rounded-md w-full"
+            >
+              <option value="">All Types</option>
+              <option value="Veterinary">Veterinary</option>
+              <option value="AI">AI</option>
+              <option value="Feed">Feed</option>
+              <option value="Insurance">Insurance</option>
+              <option value="Loan">Loan</option>
+            </select>
+          </div>
+
+          <div className="border border-gray-300 px-2 bg-white">
+            <select
+
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
+              className="p-2 rounded-md w-full"
+            >
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+          </div>
+
           <button
             onClick={handleClearFilters}
-            className="bg-red-500 text-white py-2 px-4 rounded-md w-full"
+            className="py-2 px-4 rounded-md w-full border-[#4695b8] border-2 text-[#4695b8]"
           >
             Clear Filters
           </button>

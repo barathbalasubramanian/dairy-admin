@@ -79,7 +79,7 @@ const ClusterPage = () => {
   };
 
   const renderCard = (data, index) => (
-    <div key={index} className="farmer-card-1 w-[295px]">
+    <div key={index} className="farmer-card-1 min-w-[350px]">
       <div className="farmer-card-header">
         <div className="farmer-card-id"><span className="farmer-card-name capitalize">{data.clusterName}</span></div>
         {data.clusterId}
@@ -119,6 +119,7 @@ const ClusterPage = () => {
         <button
           className="connect-button"
           onClick={() => handleViewMoreClick(data)}
+          style={{ backgroundColor: "#4695b8", marginTop: "20px" }}
         >
           Edit
           <img src={edit_img} alt="" />
@@ -151,7 +152,7 @@ const ClusterPage = () => {
             </div>
           )}
         </div>
-        <div className="farmer-card-container flex justify-center">{cluster.map(renderCard)}</div>
+        <div className="flex flex-wrap justify-start px-6 py-10 gap-8">{cluster.map(renderCard)}{cluster.map(renderCard)}</div>
       </>
       <IndividualDetailsPopup
         isOpen={isIndividualDetailsPopupOpen}

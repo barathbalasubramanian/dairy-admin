@@ -43,7 +43,7 @@ const UserDetailPopup = ({ user, onClose }) => {
           </div>
         </div>
         <div className="popup-buttons">
-          <button className="user-forget-password-button">
+          <button className="user-forget-password-button" style={{backgroundColor:"#4695b8"}}>
             Forget Password
           </button>
           <button className="user-save-button" disabled>

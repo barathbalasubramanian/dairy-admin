@@ -15,7 +15,9 @@ const FinanceConnectPopup = ({ isOpen, onClose, onConfirm }) => {
           <button className="cancel-button" onClick={onClose}>
            No
           </button>
-          <button className="confirm-button" onClick={onConfirm}>
+          <button className="confirm-button" onClick={onConfirm} style={{backgroundColor
+            :"#4695b8"
+          }}>
             Yes
           </button>
         </div>

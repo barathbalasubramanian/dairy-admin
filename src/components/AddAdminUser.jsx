@@ -57,8 +57,8 @@ const AddAdminUser = ({ onClose, onsave }) => {
           </div>
         </div>
         <div className="popup-buttons">
-        <button className="user-forget-password-button"  onClick={onClose}>
-            close
+        <button className="user-forget-password-button" style={{backgroundColor:"#4695b8"}}  onClick={onClose}>
+            Close
           </button>
           <button
             className="user-save-button"
